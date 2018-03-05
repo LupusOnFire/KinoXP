@@ -22,5 +22,5 @@ dist/
 nbdist/
 .nb-gradle/
 
-application.properties
-/src/main/resources/application.properties
+application.propterties
+
