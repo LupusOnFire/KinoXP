@@ -14,11 +14,17 @@ public class Booking {
     private Seat seat;
     @Column(name = "cinema")
     private Cinema cinema;
+    @Column(name = "showing")
+    private Showing showing;
+    @Column(name = "telephone")
+    private String telephone;
 
-    public Booking(int id, Seat seat, Cinema cinema) {
+    public Booking(int id, Seat seat, Cinema cinema, Showing showing, String telephone) {
         this.id = id;
         this.seat = seat;
         this.cinema = cinema;
+        this.showing = showing;
+        this.telephone = telephone;
     }
 
     public int getId() {
@@ -43,5 +49,21 @@ public class Booking {
 
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
+    }
+
+    public Showing getShowing() {
+        return showing;
+    }
+
+    public void setShowing(Showing showing) {
+        this.showing = showing;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
