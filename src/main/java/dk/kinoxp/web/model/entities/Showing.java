@@ -14,7 +14,7 @@ public class Showing {
     private Date time;
     @Column(name = "movie_id")
     private Movie movie;
-    @Column(name = "cinemaNo")
+    @Column(name = "cinema_id")
     private Cinema cinema;
 
     public Showing(Date time, Movie movie, Cinema cinema) {
