@@ -12,8 +12,8 @@ public class Seat {
 
     @Column(name = "row")
     private int row;
-    @Column(name = "column")
-    private int column;
+    @Column(name = "position")
+    private int position;
     @Column(name = "isReserved")
     private boolean isReserved;
     @Column(name = "reservedBy")
@@ -21,9 +21,9 @@ public class Seat {
     @Column(name = "cinema_id")
     private int cinemaId;
 
-    public Seat(int row, int column, boolean isReserved, String reservedBy, int cinemaId) {
+    public Seat(int row, int position, boolean isReserved, String reservedBy, int cinemaId) {
         this.row = row;
-        this.column = column;
+        this.position = position;
         this.isReserved = isReserved;
         this.reservedBy = reservedBy;
         this.cinemaId = cinemaId;
@@ -46,11 +46,11 @@ public class Seat {
     }
 
     public int getColumn() {
-        return column;
+        return position;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
+    public void setColumn(int position) {
+        this.position = position;
     }
 
     public boolean isReserved() {

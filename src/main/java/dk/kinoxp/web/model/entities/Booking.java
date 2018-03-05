@@ -10,9 +10,9 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "seat")
+    @Column(name = "seat_id")
     private Seat seat;
-    @Column(name = "cinema")
+    @Column(name = "cinema_id")
     private Cinema cinema;
     @Column(name = "showing")
     private Showing showing;
