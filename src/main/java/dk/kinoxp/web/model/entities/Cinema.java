@@ -8,8 +8,8 @@ import javax.persistence.*;
 public class Cinema {
 
     @Id
-    @Column(name = "cinema_id")
-    private int cinema_Id;
+    @Column(name = "cinema_id", nullable = false)
+    private int id;
 
     @Column(name = "height")
     private double height;
@@ -21,18 +21,18 @@ public class Cinema {
     public Cinema() {
     }
 
-    public Cinema(int cinemaId, double height, double width) {
-        this.cinema_Id = cinemaId;
+    public Cinema(int id, double height, double width) {
+        this.id = id;
         this.height = height;
         this.width = width;
     }
 
     public int getId() {
-        return cinema_Id;
+        return id;
     }
 
-    public void setId(int cinemaId) {
-        this.cinema_Id = cinemaId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getHeight() {
