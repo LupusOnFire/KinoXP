@@ -1,6 +1,7 @@
 package dk.kinoxp.web.model.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "movie")
@@ -21,6 +22,14 @@ public class Movie {
 
     @Column(name="poster_path")
     private String posterPath;
+
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "movie_actor",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
+    private List<Actor> Actor;
+
 
     public Movie() {
     }
