@@ -3,6 +3,7 @@ package dk.kinoxp.web.model.entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "seat")
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
