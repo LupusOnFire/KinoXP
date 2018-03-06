@@ -1,16 +1,15 @@
 package dk.kinoxp.web.model.entities;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cinema")
 public class Cinema {
 
-    @Column(name = "cinema_id")
-    private int cinemaId;
+    @Id
+    @Column(name = "cinema_id", nullable = false)
+    private int id;
 
     @Column(name = "height")
     private double height;
@@ -22,18 +21,18 @@ public class Cinema {
     public Cinema() {
     }
 
-    public Cinema(int cinemaId, double height, double width) {
-        this.cinemaId = cinemaId;
+    public Cinema(int id, double height, double width) {
+        this.id = id;
         this.height = height;
         this.width = width;
     }
 
-    public int getCinemaId() {
-        return cinemaId;
+    public int getId() {
+        return id;
     }
 
-    public void setCinemaId(int cinemaId) {
-        this.cinemaId = cinemaId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getHeight() {

@@ -1,6 +1,7 @@
 package dk.kinoxp.web.model.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "booking")
@@ -8,20 +9,26 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "booking_id")
     private int id;
-    @Column(name = "seat")
-    private Seat seat;
-    @Column(name = "cinema")
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "booking_seat", joinColumns = @JoinColumn(name = "booking_id"), inverseJoinColumns = @JoinColumn(name = "seat_id"))
+    private List<Seat> seats;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cinema_id")
     private Cinema cinema;
-    @Column(name = "showing")
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "showing_id")
     private Showing showing;
+
     @Column(name = "telephone")
     private String telephone;
 
-    public Booking(int id, Seat seat, Cinema cinema, Showing showing, String telephone) {
-        this.id = id;
-        this.seat = seat;
+    public Booking(List<Seat> seats, Cinema cinema, Showing showing, String telephone) {
+        this.seats = seats;
         this.cinema = cinema;
         this.showing = showing;
         this.telephone = telephone;
@@ -31,36 +38,36 @@ public class Booking {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Seat getSeat() {
-        return seat;
-    }
-
-    public void setSeat(Seat seat) {
-        this.seat = seat;
+    public List<Seat> getSeats() {
+        return seats;
     }
 
     public Cinema getCinema() {
         return cinema;
     }
 
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
-    }
-
     public Showing getShowing() {
         return showing;
     }
 
-    public void setShowing(Showing showing) {
-        this.showing = showing;
-    }
-
     public String getTelephone() {
         return telephone;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
+
+    public void setShowing(Showing showing) {
+        this.showing = showing;
     }
 
     public void setTelephone(String telephone) {

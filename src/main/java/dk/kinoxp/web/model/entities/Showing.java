@@ -10,11 +10,16 @@ public class Showing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Column(name = "time")
     private Date time;
-    @Column(name = "movie_id")
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "movie_id")
     private Movie movie;
-    @Column(name = "cinemaNo")
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cinema_id")
     private Cinema cinema;
 
     public Showing(Date time, Movie movie, Cinema cinema) {

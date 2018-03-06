@@ -10,23 +10,19 @@ public class Seat {
     @Column(name = "seat_id")
     private int id;
 
-    @Column(name = "row")
+    @Column(name = "row_no")
     private int row;
-    @Column(name = "column")
+    @Column(name = "column_no")
     private int column;
-    @Column(name = "isReserved")
-    private boolean isReserved;
-    @Column(name = "reservedBy")
-    private String reservedBy;
-    @Column(name = "cinema_id")
-    private int cinemaId;
 
-    public Seat(int row, int column, boolean isReserved, String reservedBy, int cinemaId) {
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cinema_id")
+    private Cinema cinema;
+
+    public Seat(int row, int column, Cinema cinema) {
         this.row = row;
         this.column = column;
-        this.isReserved = isReserved;
-        this.reservedBy = reservedBy;
-        this.cinemaId = cinemaId;
+        this.cinema = cinema;
     }
 
     public int getId() {
@@ -49,31 +45,11 @@ public class Seat {
         return column;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
+    public void setColumn(int position) {
+        this.column = position;
     }
 
-    public boolean isReserved() {
-        return isReserved;
-    }
-
-    public void setReserved(boolean reserved) {
-        isReserved = reserved;
-    }
-
-    public String getReservedBy() {
-        return reservedBy;
-    }
-
-    public void setReservedBy(String reservedBy) {
-        this.reservedBy = reservedBy;
-    }
-
-    public int getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(int cinemaId) {
-        this.cinemaId = cinemaId;
+    public Cinema getCinema() {
+        return cinema;
     }
 }
