@@ -21,8 +21,8 @@ import javax.persistence.*;
         public Actor() {
         }
 
-        public Actor(String username, String photoPath) {
-            this.name = username;
+        public Actor(String name, String photoPath) {
+            this.name = name;
             this.photoPath = photoPath;
         }
 
