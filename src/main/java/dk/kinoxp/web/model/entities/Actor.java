@@ -18,6 +18,9 @@ import javax.persistence.*;
         @Column(name = "photo_path")
         private String photoPath;
 
+        public Actor() {
+        }
+
         public Actor(String username, String photoPath) {
             this.name = username;
             this.photoPath = photoPath;
