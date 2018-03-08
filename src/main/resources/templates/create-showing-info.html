@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head">
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<div th:include="fragments/menu :: menu"></div>
+
+<!--
+<sf:select path="${cuisine}">
+    <sf:options items="${cuisineList}" id="id" itemValue="name"></sf:options>
+</sf:select>
+-->
+
+<div>
+    vælg sal
+</div>
+
+<div>
+    vælg dato
+</div>
+
+<div>
+    Vælg Tidspunkt
+</div>
+
+<div>
+    Vælg film
+    <form>
+
+    <select th:field="${showing.movieId}">
+        <option th:each="movie : ${movieList}" th:value="${movie.id}" th:text="${movie.title}"></option>
+    </select>
+
+    </form>
+</div>
+
+
+
+
+</body>
+</html>
