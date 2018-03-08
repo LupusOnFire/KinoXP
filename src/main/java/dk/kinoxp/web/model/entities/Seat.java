@@ -19,6 +19,10 @@ public class Seat {
     @JoinColumn(name = "cinema_id")
     private Cinema cinema;
 
+    public Seat (){
+
+    }
+
     public Seat(int row, int column, Cinema cinema) {
         this.row = row;
         this.column = column;
