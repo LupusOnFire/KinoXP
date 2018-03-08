@@ -24,3 +24,4 @@ nbdist/
 
 application.propterties
 
+/src/main/resources/application.properties
