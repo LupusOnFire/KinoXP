@@ -1,10 +1,14 @@
 package dk.kinoxp.web.controller;
 
 import dk.kinoxp.web.model.entities.Cinema;
+import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.repositories.CinemaRepository;
 import dk.kinoxp.web.model.repositories.SeatRepository;
 import dk.kinoxp.web.model.services.CinemaCreator;
+import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import dk.kinoxp.web.model.entities.Movie;
+import dk.kinoxp.web.model.repositories.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +25,14 @@ public class MainController {
     @Autowired
     CinemaRepository cinemaRepository;
 
+    @Autowired
+    MovieRepository movieRepository;
+
     public MainController() {
     }
+
+
+
 
     @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
     public String index(HttpServletRequest request){
@@ -41,4 +51,25 @@ public class MainController {
         seatRepository.saveAll(cinemaCreator.createSeats(cinema, rowCount, columnCount));
         return "index";
     }
+
+
+    @RequestMapping(value = {"create-showing-info"}, method = RequestMethod.GET)
+        public String createShowingInfo(Model model) {
+
+        model.addAttribute("movieList", movieRepository.findAll());
+        model.addAttribute("showing", new ShowingDto());
+
+     //   System.out.println(movieRepository.findAll().toString());
+        return "create-showing-info";
+    }
+
+    @RequestMapping(value = {"create-showing-info"}, method = RequestMethod.POST)
+    public String getShowingInfo(){
+
+
+
+        return "/index";
+    }
+
+
 }
