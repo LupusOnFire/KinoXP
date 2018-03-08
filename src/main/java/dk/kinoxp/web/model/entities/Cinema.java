@@ -1,6 +1,5 @@
 package dk.kinoxp.web.model.entities;
 
-
 import javax.persistence.*;
 
 @Entity
