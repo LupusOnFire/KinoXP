@@ -1,10 +1,14 @@
 package dk.kinoxp.web.model.entities;
 
 import javax.persistence.*;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "cinema")
 public class Cinema {
+
 
     @Id
     @Column(name = "cinema_id", nullable = false)
@@ -15,6 +19,11 @@ public class Cinema {
 
     @Column (name = "width")
     private double width;
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "seat", joinColumns = @JoinColumn(name = "seat_id"), inverseJoinColumns = @JoinColumn(name = "cinema_id"))
+    private List<Seat> seats;
 
 
     public Cinema() {
@@ -48,5 +57,13 @@ public class Cinema {
 
     public void setWidth(double width) {
         this.width = width;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
     }
 }
