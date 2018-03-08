@@ -8,20 +8,16 @@ public class PasswordService {
     PasswordEncoder encoder;
 
     public PasswordService(){
-        encoder = new BCryptPasswordEncoder(10 );
+        encoder = new BCryptPasswordEncoder(10);
     }
 
     public String encodePassword(String password){
-        String hashedPassword = null;
-
-        hashedPassword = encoder.encode(password);
-        return hashedPassword;
+        return encoder.encode(password);
     }
 
     public boolean checkMatch(String plainPassword, String hashedPassword){
-        if(encoder.matches(plainPassword, hashedPassword)){
+        if(encoder.matches(plainPassword, hashedPassword))
             return true;
-        }
         return false;
     }
 }
