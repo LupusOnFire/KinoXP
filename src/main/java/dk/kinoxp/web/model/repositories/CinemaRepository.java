@@ -9,6 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CinemaRepository extends JpaRepository<Cinema, Integer> {
-    List<Seat> findAllById(int id);
     Cinema findById(int id);
 }
