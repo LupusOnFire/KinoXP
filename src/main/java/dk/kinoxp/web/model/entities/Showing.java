@@ -22,6 +22,10 @@ public class Showing {
     @JoinColumn(name = "cinema_id")
     private Cinema cinema;
 
+    public Showing () {
+
+    }
+
     public Showing(Date time, Movie movie, Cinema cinema) {
         this.time = time;
         this.movie = movie;
