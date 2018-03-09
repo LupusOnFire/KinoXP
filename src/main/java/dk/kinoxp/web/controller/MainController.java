@@ -130,12 +130,24 @@ public class MainController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(Model model){
+    public String create(Model model, HttpSession session){
+        model.addAttribute("user", new User());
+        if (sessionController(session)){
+            return "create";
+        } else {
+            return "login";
+        }
+
+    }
+
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(Model model, User user) {
         PasswordService passwordService = new PasswordService();
 
         UserCreator userCreator = new UserCreator();
 
-        userRepository.save(userCreator.createuser("Henrik", passwordService.encodePassword("1234")));
+        userRepository.save(userCreator.createuser(user.getUsername(), passwordService.encodePassword(user.getPassword())));
         return "redirect:/";
     }
 
