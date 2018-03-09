@@ -5,7 +5,10 @@ import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.entities.User;
 import dk.kinoxp.web.model.repositories.CinemaRepository;
 import dk.kinoxp.web.model.repositories.SeatRepository;
+import dk.kinoxp.web.model.repositories.UserRepository;
 import dk.kinoxp.web.model.services.CinemaCreator;
+import dk.kinoxp.web.model.services.PasswordService;
+import dk.kinoxp.web.model.services.UserCreator;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import dk.kinoxp.web.model.entities.Movie;
@@ -30,6 +33,10 @@ public class MainController {
 
     @Autowired
     MovieRepository movieRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
 
     public MainController() {
     }
@@ -92,13 +99,19 @@ public class MainController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(User user, Model model, HttpSession session){
-        if(user.getUsername().equals("anna") && user.getPassword().equals("1234")){
-            session.setAttribute("status", "1");
-            System.out.println("Logget på");
-        } else {
-            session.setAttribute("status", "0");
-            System.out.println("Ikke logget på");
-            return "login";
+        User dbUser = userRepository.findByUsername(user.getUsername());
+        if (dbUser != null){
+
+            PasswordService pwdService = new PasswordService();
+
+            if (pwdService.checkMatch(user.getPassword(), dbUser.getPassword())){
+                session.setAttribute("status", "1");
+                System.out.println("Logget på");
+            } else {
+                session.setAttribute("status", "0");
+                System.out.println("Ikke logget på");
+                return "login";
+            }
         }
         return "redirect:/";
     }
@@ -109,6 +122,16 @@ public class MainController {
         return "login";
     }
 
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(Model model){
+        PasswordService passwordService = new PasswordService();
+
+        UserCreator userCreator = new UserCreator();
+
+        userRepository.save(userCreator.createuser("Henrik", passwordService.encodePassword("1234")));
+        return "redirect:/";
+    }
+
     private boolean sessionController(HttpSession session){
         if(session.getAttribute("status") != null && session.getAttribute("status").equals("1")){
             return true;
@@ -116,5 +139,7 @@ public class MainController {
             return false;
         }
     }
+
+
 
 }
