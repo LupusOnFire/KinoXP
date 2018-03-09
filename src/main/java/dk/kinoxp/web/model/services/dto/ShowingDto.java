@@ -2,12 +2,15 @@ package dk.kinoxp.web.model.services.dto;
 
 import dk.kinoxp.web.model.entities.Cinema;
 import dk.kinoxp.web.model.entities.Movie;
+import dk.kinoxp.web.model.entities.Showing;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
 
 public class ShowingDto {
     private int id;
+    @DateTimeFormat (pattern = "yyyy-MM-dd'T'HH:mm")
     private Date time;
     private int movieId;
     private int cinemaId;
@@ -20,6 +23,10 @@ public class ShowingDto {
     }
     public ShowingDto(){
 
+    }
+
+    public void createShowing(){
+        Showing showing = new Showing();
     }
 
     public int getId() {
@@ -52,5 +59,15 @@ public class ShowingDto {
 
     public void setCinemaId(int cinemaId) {
         this.cinemaId = cinemaId;
+    }
+
+    @Override
+    public String toString() {
+        return "ShowingDto{" +
+                "id=" + id +
+                ", time=" + time +
+                ", movieId=" + movieId +
+                ", cinemaId=" + cinemaId +
+                '}';
     }
 }

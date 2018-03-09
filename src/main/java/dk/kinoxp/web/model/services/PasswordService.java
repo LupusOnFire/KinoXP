@@ -16,8 +16,7 @@ public class PasswordService {
     }
 
     public boolean checkMatch(String plainPassword, String hashedPassword){
-        if(encoder.matches(plainPassword, hashedPassword))
-            return true;
-        return false;
+        return (encoder.matches(plainPassword, hashedPassword));
+
     }
 }
