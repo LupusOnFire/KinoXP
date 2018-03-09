@@ -11,6 +11,7 @@ import dk.kinoxp.web.model.entities.Movie;
 import dk.kinoxp.web.model.repositories.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,16 +59,19 @@ public class MainController {
 
         model.addAttribute("movieList", movieRepository.findAll());
         model.addAttribute("showing", new ShowingDto());
+        model.addAttribute("cinemaList", cinemaRepository.findAll());
+
 
      //   System.out.println(movieRepository.findAll().toString());
         return "create-showing-info";
     }
 
     @RequestMapping(value = {"create-showing-info"}, method = RequestMethod.POST)
-    public String getShowingInfo(){
-
-
-
+    public String getShowingInfo(@ModelAttribute ShowingDto showingDto){
+        Showing showing = new Showing();
+        showing.setCinema(cinemaRepository.findById(showingDto.getCinemaId()));
+        showing.setMovie(movieRepository.findById(showingDto.getMovieId()));
+        System.out.println(showing.getCinema().getSeats().size() + " " + showing.getMovie().getTitle());
         return "/index";
     }
 
