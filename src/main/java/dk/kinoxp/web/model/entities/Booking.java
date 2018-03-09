@@ -27,11 +27,15 @@ public class Booking {
     @Column(name = "telephone")
     private String telephone;
 
-    public Booking(List<Seat> seats, Cinema cinema, Showing showing, String telephone) {
+    @Column(name = "paid")
+    private boolean paid;
+
+    public Booking(List<Seat> seats, Cinema cinema, Showing showing, String telephone, boolean paid) {
         this.seats = seats;
         this.cinema = cinema;
         this.showing = showing;
         this.telephone = telephone;
+        this.paid = paid;
     }
 
     public int getId() {
@@ -72,5 +76,13 @@ public class Booking {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }
