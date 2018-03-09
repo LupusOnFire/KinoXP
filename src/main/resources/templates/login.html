@@ -9,7 +9,7 @@
         <div th:include="fragments/menu :: menu"></div>
         <div id ="bodyContainer">
 
-            <div th:if="${session.session == null}">
+            <div th:if="${session.status == null}">
                 <form method="POST" action="/login">
                     <input type="text" name="username" value="anna"/>
                     <input type="text" name="password" value="1234"/>
@@ -17,7 +17,7 @@
                 </form>
             </div>
 
-            <div th:if="${session.session == '1'}">
+            <div th:if="${session.status == '1'}">
                 <p>Haha</p>
             </div>
 
