@@ -5,6 +5,7 @@ import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.entities.User;
 import dk.kinoxp.web.model.repositories.CinemaRepository;
 import dk.kinoxp.web.model.repositories.SeatRepository;
+import dk.kinoxp.web.model.repositories.ShowingRepository;
 import dk.kinoxp.web.model.services.CinemaCreator;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class MainController {
 
     @Autowired
     MovieRepository movieRepository;
+
+    @Autowired
+    ShowingRepository showingRepository;
 
     public MainController() {
     }
@@ -85,7 +89,10 @@ public class MainController {
         Showing showing = new Showing();
         showing.setCinema(cinemaRepository.findById(showingDto.getCinemaId()));
         showing.setMovie(movieRepository.findById(showingDto.getMovieId()));
-        System.out.println(showing.getCinema().getSeats().size() + " " + showing.getMovie().getTitle());
+       // System.out.println(showing.getCinema().getSeats().size() + " " + showing.getMovie().getTitle());
+       // System.out.println(showingDto.getTime());
+       // showingRepository.saveAll(showingDto.createShowing(showing, bla bla, bla bla, bla bla));
+
         return "/index";
     }
 
