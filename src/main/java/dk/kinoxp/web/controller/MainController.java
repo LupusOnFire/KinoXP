@@ -5,7 +5,7 @@ import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.repositories.CinemaRepository;
 import dk.kinoxp.web.model.repositories.SeatRepository;
 import dk.kinoxp.web.model.services.CinemaCreator;
-//import dk.kinoxp.web.model.services.dto.ShowingDto;
+import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import dk.kinoxp.web.model.entities.Movie;
 import dk.kinoxp.web.model.repositories.MovieRepository;
@@ -57,7 +57,7 @@ public class MainController {
         public String createShowingInfo(Model model) {
 
         model.addAttribute("movieList", movieRepository.findAll());
-        //model.addAttribute("showing", new ShowingDto());
+        model.addAttribute("showing", new ShowingDto());
 
      //   System.out.println(movieRepository.findAll().toString());
         return "create-showing-info";
