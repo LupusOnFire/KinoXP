@@ -13,9 +13,13 @@
     <sf:options items="${cuisineList}" id="id" itemValue="name"></sf:options>
 </sf:select>
 -->
+<form th:action="@{create-showing-info}" method="post" th:object="${showing}">
 
 <div>
     vælg sal
+    <select th:field="${showing.cinemaId}">
+        <option th:each="cinema : ${cinemaList}" th:value="${cinema.id}" th:text="${cinema.id}"></option>
+    </select>
 </div>
 
 <div>
@@ -28,15 +32,16 @@
 
 <div>
     Vælg film
-    <form>
 
     <select th:field="${showing.movieId}">
         <option th:each="movie : ${movieList}" th:value="${movie.id}" th:text="${movie.title}"></option>
     </select>
 
-    </form>
 </div>
 
+    <input type="submit" value="send" />
+
+</form>
 
 
 
