@@ -5,6 +5,7 @@ import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.entities.User;
 import dk.kinoxp.web.model.repositories.CinemaRepository;
 import dk.kinoxp.web.model.repositories.SeatRepository;
+import dk.kinoxp.web.model.repositories.ShowingRepository;
 import dk.kinoxp.web.model.repositories.UserRepository;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
 import dk.kinoxp.web.model.services.CinemaCreator;
@@ -36,11 +37,11 @@ public class MainController {
     MovieRepository movieRepository;
 
     @Autowired
-    UserRepository userRepository;
-
+    ShowingRepository showingRepository;
 
     @Autowired
-    ShowingRepository showingRepository;
+    UserRepository userRepository;
+
 
     public MainController() {
     }
@@ -101,6 +102,14 @@ public class MainController {
        // showingRepository.saveAll(showingDto.createShowing(showing, bla bla, bla bla, bla bla));
 
         return "/index";
+    }
+
+    @RequestMapping(value = {"show-available-seats"}, method = RequestMethod.GET, params = {"showingId"})
+    public String getAvailableSeatsForShowing(Model model, @RequestParam int showingId) {
+        Showing showing = showingRepository.findById(showingId);
+        model.addAttribute("showing", showing);
+        model.addAttribute("cinema", showing.getCinema());
+        return "/show-available-seats";
     }
 
 
