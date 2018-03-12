@@ -12,7 +12,6 @@ import dk.kinoxp.web.model.services.PasswordService;
 import dk.kinoxp.web.model.services.UserCreator;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import dk.kinoxp.web.model.entities.Movie;
 import dk.kinoxp.web.model.repositories.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -120,7 +119,7 @@ public class MainController {
                 return "login";
             }
         }
-        return "redirect:/";
+        return "index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -128,6 +127,14 @@ public class MainController {
         model.addAttribute("user", new User());
         return "login";
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Model model, HttpSession session){
+        session.invalidate();
+        System.out.println("Logget af");
+        return "login";
+    }
+
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model, HttpSession session){
@@ -140,15 +147,14 @@ public class MainController {
 
     }
 
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(Model model, User user) {
         PasswordService passwordService = new PasswordService();
 
         UserCreator userCreator = new UserCreator();
 
-        userRepository.save(userCreator.createuser(user.getUsername(), passwordService.encodePassword(user.getPassword())));
-        return "redirect:/";
+        userRepository.save(userCreator.createUser(user.getUsername(), passwordService.encodePassword(user.getPassword())));
+        return "create";
     }
 
     private boolean sessionController(HttpSession session){

@@ -8,7 +8,11 @@ public class UserCreator {
     }
 
 
-    public User createuser(String username, String password) {
+    public User createUser(String username, String password) {
         return new User(username, password);
+    }
+
+    public User creatUser(){
+        return new User();
     }
 }
