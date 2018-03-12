@@ -20,6 +20,12 @@ public class Cinema {
     @Column (name = "width")
     private double width;
 
+    @Column(name = "rows_no")
+    private int rows;
+
+    @Column(name = "columns_no")
+    private int columns;
+
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "seat", joinColumns = @JoinColumn(name = "cinema_id"), inverseJoinColumns = @JoinColumn(name = "seat_id"))
@@ -33,6 +39,14 @@ public class Cinema {
         this.id = id;
         this.height = height;
         this.width = width;
+    }
+
+    public Cinema(double height, double width, int rows, int columns, List<Seat> seats) {
+        this.height = height;
+        this.width = width;
+        this.rows = rows;
+        this.columns = columns;
+        this.seats = seats;
     }
 
     public int getId() {
@@ -65,5 +79,21 @@ public class Cinema {
 
     public void setSeats(List<Seat> seats) {
         this.seats = seats;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
     }
 }

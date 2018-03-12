@@ -64,15 +64,16 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>5.0.3.RELEASE</version>
 		</dependency>
+
+		<!-- TEST -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.3.12.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
