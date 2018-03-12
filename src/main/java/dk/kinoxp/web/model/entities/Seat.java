@@ -19,6 +19,8 @@ public class Seat {
     @JoinColumn(name = "cinema_id")
     private Cinema cinema;
 
+    private enum SeatStatus { empty, reserved, paid }
+
     public Seat (){
 
     }
