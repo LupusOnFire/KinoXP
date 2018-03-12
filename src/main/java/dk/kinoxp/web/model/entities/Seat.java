@@ -21,6 +21,7 @@ public class Seat {
     @JoinColumn(name = "cinema_id")
     private Cinema cinema;
 
+    @Transient
     public SeatStatus seatState;
 
     public Seat (){
