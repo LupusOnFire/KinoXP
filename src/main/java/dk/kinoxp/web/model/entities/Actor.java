@@ -49,4 +49,5 @@ import javax.persistence.*;
         public void setPhotoPath(String photoPath) {
             this.photoPath = photoPath;
         }
+
     }

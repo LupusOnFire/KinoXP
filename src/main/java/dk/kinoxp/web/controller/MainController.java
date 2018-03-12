@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @Controller
 public class MainController {
@@ -94,12 +95,10 @@ public class MainController {
     @RequestMapping(value = {"create-showing-info"}, method = RequestMethod.POST)
     public String getShowingInfo(@ModelAttribute ShowingDto showingDto){
         Showing showing = new Showing();
-        showing.setCinema(cinemaRepository.findById(showingDto.getCinemaId()));
         showing.setMovie(movieRepository.findById(showingDto.getMovieId()));
-       // System.out.println(showing.getCinema().getSeats().size() + " " + showing.getMovie().getTitle());
-       // System.out.println(showingDto.getTime());
-       // showingRepository.saveAll(showingDto.createShowing(showing, bla bla, bla bla, bla bla));
-
+        showing.setCinema(cinemaRepository.findById(showingDto.getCinemaId()));
+        showing.setTime((showingDto.getTime()));
+        showingRepository.save(showing);
         return "/index";
     }
 

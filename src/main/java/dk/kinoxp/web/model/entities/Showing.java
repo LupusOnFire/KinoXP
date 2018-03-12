@@ -1,5 +1,7 @@
 package dk.kinoxp.web.model.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class Showing {
     private int id;
 
     @Column(name = "time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date time;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -62,5 +65,8 @@ public class Showing {
 
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
+    }
+    public void setCinemaWithId(int cinemaId){
+
     }
 }

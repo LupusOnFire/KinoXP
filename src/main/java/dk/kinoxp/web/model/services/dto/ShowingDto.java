@@ -25,10 +25,6 @@ public class ShowingDto {
 
     }
 
-    public void createShowing(){
-        Showing showing = new Showing();
-    }
-
     public int getId() {
         return id;
     }
