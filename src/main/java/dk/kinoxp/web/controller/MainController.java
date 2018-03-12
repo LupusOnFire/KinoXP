@@ -102,6 +102,7 @@ public class MainController {
         return "/index";
     }
 
+
     @RequestMapping(value = {"show-available-seats"}, method = RequestMethod.GET, params = {"showingId"})
     public String getAvailableSeatsForShowing(Model model, @RequestParam int showingId) {
         Showing showing = showingRepository.findById(showingId);
