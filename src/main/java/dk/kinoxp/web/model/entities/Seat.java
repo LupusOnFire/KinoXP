@@ -31,6 +31,7 @@ public class Seat {
         this.cinema = cinema;
     }
 
+
     public int getId() {
         return id;
     }
