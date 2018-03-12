@@ -7,7 +7,7 @@
 <body>
 <div th:fragment="menu">
 
-    <nav class="navbar navbar-inverse bg-inverse" style="background-color: #273449; color: #fff; font-size: 30px" >
+    <nav class="navbar navbar-inverse" style="background-color: #273449; color: #fff; font-size: 30px" >
         <div style="float: left">
             <a href="/"><img src="https://imgur.com/jHTsJxu.jpg" style="height: 100px"/></a>
         </div>
@@ -18,8 +18,12 @@
         <div style="float: left; margin: 22px; width: 200px; height: auto; text-align: center">
             <h3>EDIT</h3>
         </div>
-        <div style="float: right; margin: 22px; width: 200px; height: auto; text-align: center">
+        <div th:if="${session.status == null}" style="float: right; margin: 22px; width: 200px; height: auto; text-align: center">
             <a href="/login"><h3>LOGIN</h3></a>
+        </div>
+
+        <div th:if="${session.status != null}" style="float: right; margin: 22px; width: 200px; height: auto; text-align: center">
+            <a href="/logout"><h3>LOGOUT</h3></a>
         </div>
     </nav>
 
