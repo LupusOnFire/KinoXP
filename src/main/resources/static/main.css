@@ -122,5 +122,6 @@ body {
     font-size: 32px;
 }
 
-
-
+.navbar .navbar-inverse .navbar-fixed-top {
+    background-color: #273449 !important;
+}

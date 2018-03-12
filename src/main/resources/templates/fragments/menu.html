@@ -6,27 +6,36 @@
 </head>
 <body>
 <div th:fragment="menu">
-
-    <nav class="navbar navbar-inverse" style="background-color: #273449; color: #fff; font-size: 30px" >
-        <div style="float: left">
-            <a href="/"><img src="https://imgur.com/jHTsJxu.jpg" style="height: 100px"/></a>
-        </div>
-        <div style="float: left; margin: 22px; width: 200px; height: auto; text-align: center">
-            <h3> <a href ="/create-showing-info">CREATE</a></h3>
-
-        </div>
-        <div style="float: left; margin: 22px; width: 200px; height: auto; text-align: center">
-            <h3>EDIT</h3>
-        </div>
-        <div th:if="${session.status == null}" style="float: right; margin: 22px; width: 200px; height: auto; text-align: center">
-            <a href="/login"><h3>LOGIN</h3></a>
-        </div>
-
-        <div th:if="${session.status != null}" style="float: right; margin: 22px; width: 200px; height: auto; text-align: center">
-            <a href="/logout"><h3>LOGOUT</h3></a>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div style="float: left">
+                <a href="/"><img src="https://imgur.com/jHTsJxu.jpg" style="height: 50px"/></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Booking<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Create</a></li>
+                        <li><a href="#">View / Update</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Showing<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Create</a></li>
+                        <li><a href="#">View / Update</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movie<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Create</a></li>
+                        <li><a href="#">View / Update</a></li>
+                    </ul>
+                </li>
+                <li th:if="${session.status == null}"><a href="/login">Login</a></li>
+                <li th:if="${session.status != null}"><a href="/logout">Logout</a></li>
+            </ul>
         </div>
     </nav>
-
 </div>
 </body>
 </html>
