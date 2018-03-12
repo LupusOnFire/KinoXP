@@ -7,12 +7,11 @@ public class UserCreator {
     public UserCreator() {
     }
 
-
     public User createUser(String username, String password) {
         return new User(username, password);
     }
 
-    public User creatUser(){
+    public User createUser(){
         return new User();
     }
 }

@@ -1,19 +1,17 @@
 package dk.kinoxp.web.controller;
 
+import dk.kinoxp.web.model.entities.Booking;
 import dk.kinoxp.web.model.entities.Cinema;
 import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.entities.User;
-import dk.kinoxp.web.model.repositories.CinemaRepository;
-import dk.kinoxp.web.model.repositories.SeatRepository;
+import dk.kinoxp.web.model.repositories.*;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
-import dk.kinoxp.web.model.repositories.UserRepository;
-import dk.kinoxp.web.model.repositories.ShowingRepository;
+import dk.kinoxp.web.model.services.BookingCreator;
 import dk.kinoxp.web.model.services.CinemaCreator;
 import dk.kinoxp.web.model.services.PasswordService;
 import dk.kinoxp.web.model.services.UserCreator;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import dk.kinoxp.web.model.repositories.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +36,9 @@ public class MainController {
 
     @Autowired
     ShowingRepository showingRepository;
+
+    @Autowired
+    BookingRepository bookingRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -145,25 +146,41 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(Model model, HttpSession session){
+    @RequestMapping(value = "/create-user", method = RequestMethod.GET)
+    public String createUser(Model model, HttpSession session){
         model.addAttribute("user", new User());
+
         if (sessionController(session)){
             return "create";
         } else {
             return "login";
         }
-
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(Model model, User user) {
+    @RequestMapping(value = "/create-user", method = RequestMethod.POST)
+    public String createUser(Model model, User user) {
         PasswordService passwordService = new PasswordService();
-
         UserCreator userCreator = new UserCreator();
-
         userRepository.save(userCreator.createUser(user.getUsername(), passwordService.encodePassword(user.getPassword())));
         return "create";
+    }
+
+    @RequestMapping(value = "/create-booking", method = RequestMethod.POST)
+    public String createBooking(Booking booking){
+        BookingCreator bookingCreator = new BookingCreator();
+        bookingRepository.save(bookingCreator.createBooking(booking.getSeats(), booking.getCinema(), booking.getShowing(), booking.getTelephone(), booking.isPaid()));
+
+        // Form missing in HTML
+
+        return "create-booking";
+    }
+
+    @RequestMapping(value = "/create-booking", method = RequestMethod.GET)
+    public String createBooking(){
+
+        // Might need an empty Booking object...
+
+        return "create-booking";
     }
 
     private boolean sessionController(HttpSession session){

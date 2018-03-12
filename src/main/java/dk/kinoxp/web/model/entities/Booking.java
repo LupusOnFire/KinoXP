@@ -38,6 +38,13 @@ public class Booking {
         this.paid = paid;
     }
 
+    public Booking(){
+
+    }
+    public Booking(String telephone){
+        this.telephone = telephone;
+    }
+
     public int getId() {
         return id;
     }
