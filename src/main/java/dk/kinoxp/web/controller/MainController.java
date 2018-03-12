@@ -5,10 +5,12 @@ import dk.kinoxp.web.model.entities.Cinema;
 import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.entities.User;
 import dk.kinoxp.web.model.repositories.*;
+import dk.kinoxp.web.model.entities.*;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
 import dk.kinoxp.web.model.services.BookingCreator;
 import dk.kinoxp.web.model.services.CinemaCreator;
 import dk.kinoxp.web.model.services.PasswordService;
+import dk.kinoxp.web.model.services.ShowingService;
 import dk.kinoxp.web.model.services.UserCreator;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.util.List;
+
 
 @Controller
 public class MainController {
@@ -106,7 +109,14 @@ public class MainController {
 
     @RequestMapping(value = {"show-available-seats"}, method = RequestMethod.GET, params = {"showingId"})
     public String getAvailableSeatsForShowing(Model model, @RequestParam int showingId) {
+        ShowingService showingService = new ShowingService();
+
         Showing showing = showingRepository.findById(showingId);
+        List<Booking> bookings = bookingRepository.findAllByShowing(showing);
+
+        List<Seat> seats = showingService.setSeatState(showing.getCinema().getSeats(), bookings);
+
+        model.addAttribute("seats", seats);
         model.addAttribute("showing", showing);
         model.addAttribute("cinema", showing.getCinema());
         return "/show-available-seats";
