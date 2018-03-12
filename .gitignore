@@ -22,6 +22,10 @@ dist/
 nbdist/
 .nb-gradle/
 
+
+# DON'T DELETE!!!
+application.propteries
+
 /src/main/resources/application.properties
 /src/main/resources/static/main_b.css
 /src/main/resources/templates/fragments/menu_b.html
