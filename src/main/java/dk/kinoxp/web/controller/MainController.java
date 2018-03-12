@@ -94,14 +94,13 @@ public class MainController {
     @RequestMapping(value = {"create-showing-info"}, method = RequestMethod.POST)
     public String getShowingInfo(@ModelAttribute ShowingDto showingDto){
         Showing showing = new Showing();
-        showing.setCinema(cinemaRepository.findById(showingDto.getCinemaId()));
         showing.setMovie(movieRepository.findById(showingDto.getMovieId()));
-       // System.out.println(showing.getCinema().getSeats().size() + " " + showing.getMovie().getTitle());
-       // System.out.println(showingDto.getTime());
-       // showingRepository.saveAll(showingDto.createShowing(showing, bla bla, bla bla, bla bla));
-
+        showing.setCinema(cinemaRepository.findById(showingDto.getCinemaId()));
+        showing.setTime((showingDto.getTime()));
+        showingRepository.save(showing);
         return "/index";
     }
+
 
     @RequestMapping(value = {"show-available-seats"}, method = RequestMethod.GET, params = {"showingId"})
     public String getAvailableSeatsForShowing(Model model, @RequestParam int showingId) {
