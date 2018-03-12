@@ -8,8 +8,7 @@
 <body>
 <div th:include="fragments/menu :: menu"></div>
 <div id ="bodyContainer">
-
-    <div th:if="${session.status == null}">
+    <div id="loginContainer" th:if="${session.status == null}">
         <h2 style="color: #fff;">Login to access site</h2>
         <form method="POST" action="/login">
             <input type="text" name="username" value="anna"/>
@@ -17,11 +16,9 @@
             <input type="submit"  value="login"/>
         </form>
     </div>
-
     <div th:if="${session.status == '1'}">
         <h2 style="color: #fff;">You are already logged in</h2>
     </div>
-
 </div>
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
