@@ -122,6 +122,15 @@ body {
     font-size: 32px;
 }
 
-.navbar .navbar-inverse .navbar-fixed-top {
-    background-color: #273449 !important;
+#loginContainer {
+    color: #000;
+    width: 1000px;
+    height: 600px;
+    padding: 0;
+    margin: 0;
+    border: 0px solid #000;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-align: center;
 }
