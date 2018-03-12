@@ -1,5 +1,7 @@
 package dk.kinoxp.web.model.entities;
 
+import dk.kinoxp.web.model.enums.SeatStatus;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +21,7 @@ public class Seat {
     @JoinColumn(name = "cinema_id")
     private Cinema cinema;
 
-    private enum SeatStatus { empty, reserved, paid }
+    public SeatStatus seatState;
 
     public Seat (){
 
@@ -58,5 +60,17 @@ public class Seat {
 
     public Cinema getCinema() {
         return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
+
+    public SeatStatus getSeatState() {
+        return seatState;
+    }
+
+    public void setSeatState(SeatStatus seatState) {
+        this.seatState = seatState;
     }
 }
