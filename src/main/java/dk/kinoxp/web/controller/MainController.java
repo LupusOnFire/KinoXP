@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,6 +56,7 @@ public class MainController {
             return "login";
         }
     }
+
     @RequestMapping(value = {"create-cinema"}, method = RequestMethod.GET, params = {"cinemaId", "cinemaHeight", "cinemaWidth", "rowCount", "columnCount"})
     public String createCinema(Model model, HttpSession session, @RequestParam int cinemaId, @RequestParam double cinemaHeight, @RequestParam double cinemaWidth, @RequestParam int rowCount, @RequestParam int columnCount) {
         /* Example usage :
@@ -76,14 +78,14 @@ public class MainController {
 
 
     @RequestMapping(value = {"create-showing-info"}, method = RequestMethod.GET)
-        public String createShowingInfo(Model model, HttpSession session) {
+    public String createShowingInfo(Model model, HttpSession session) {
 
         model.addAttribute("movieList", movieRepository.findAll());
         model.addAttribute("showing", new ShowingDto());
         model.addAttribute("cinemaList", cinemaRepository.findAll());
 
 
-     //   System.out.println(movieRepository.findAll().toString());
+        //   System.out.println(movieRepository.findAll().toString());
 
         if (sessionController(session)){
             return "create-showing-info";
@@ -207,6 +209,16 @@ public class MainController {
         return "redirect:/index";
     }
 
+    @RequestMapping(value = {"view-showings"}, method = RequestMethod.GET)
+    public String viewShowings(Model model, HttpServletRequest request, HttpSession session){
+        model.addAttribute("showings",showingRepository.findAll());
+
+        if (sessionController(session)){
+            return "view-showings";
+        } else {
+            return "login";
+        }
+    }
 
     private boolean sessionController(HttpSession session){
         if(session.getAttribute("status") != null && session.getAttribute("status").equals("1")){
