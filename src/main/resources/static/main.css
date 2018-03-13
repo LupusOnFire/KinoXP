@@ -164,7 +164,7 @@ body {
     user-select: none;
 }
 
-/* The actual popup
+/* The actual popup - modified version of https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup
  absolute position to the movieContainer
  with same height and width, positioned 50 px down (under the header)
  */
@@ -181,7 +181,7 @@ body {
     height: 500px;
 }
 
-/* Toggle this class - hide and show the popup */
+/* Toggle this class - hide and show the popup - modified version of https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup*/
 .popup .show {
     visibility: visible;
 }
