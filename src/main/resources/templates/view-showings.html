@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 
+
+<script>
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+
 <body>
 <div th:include="fragments/menu :: menu"></div>
 <div id ="bodyContainer">
@@ -33,21 +41,15 @@
 
             </div>
                 <span class="popuptext" id="myPopup">
-                <div th:each="showing : ${showings}"></div>
+                    <div th:each="showing : ${showings}">
+                    <h1>loop test</h1>
+                    </div>
                 </span>
-            </div>
+        </div>
 
-            <script>
-                function myFunction() {
-                    var popup = document.getElementById("myPopup");
-                    popup.classList.toggle("show");
-                }
-            </script>
-
-
+        <div id="movieFooter">154m, R rating</div>
 
         </div>
-        <div id="movieFooter">154m, R rating</div>
     </div>
     <br/>
     <div id="movieContainer">
