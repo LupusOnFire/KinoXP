@@ -5,9 +5,7 @@ import dk.kinoxp.web.model.entities.Seat;
 import dk.kinoxp.web.model.entities.Showing;
 import dk.kinoxp.web.model.enums.SeatStatus;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ShowingService {
     public ShowingService() {
@@ -20,26 +18,34 @@ public class ShowingService {
         for (Booking b : bookings) {
             for (Seat s : b.getSeats()) {
                 if (b.isPaid()) {
-                    s.seatState = SeatStatus.PAID;
+                    s.setSeatState(SeatStatus.PAID);
                 } else {
-                    s.seatState = SeatStatus.RESERVED;
+                    s.setSeatState(SeatStatus.RESERVED);
                 }
                 bookedSeats.add(s);
             }
         }
 
+
+        // Order booked seats
+        bookedSeats.sort(Comparator.comparingInt(Seat::getId));
+
+
         int bookedSeatIndex = 0;
 
         // Loop through all the seats from the cinema
         for (int i = 0; i < cinemaSeats.size(); i++) {
-            // If the current seat is the same as a booked seat, overwrite the seat
+            // If the current seat is the same as a booked seat, set the seat state
             if (bookedSeatIndex < bookedSeats.size()) {
                 if (bookedSeats.get(bookedSeatIndex).getId() == cinemaSeats.get(i).getId()) {
-                    cinemaSeats.set(i, bookedSeats.get(bookedSeatIndex));
+                    cinemaSeats.get(i).setSeatState(bookedSeats.get(bookedSeatIndex).getSeatState());
                     bookedSeatIndex++;
-                } // Else set the seat state to empty
+                    // Else set seat state as empty
+                } else {
+                    cinemaSeats.get(i).setSeatState(SeatStatus.EMPTY);
+                }
             } else {
-                cinemaSeats.get(i).seatState = SeatStatus.EMPTY;
+                cinemaSeats.get(i).setSeatState(SeatStatus.EMPTY);
             }
         }
         return cinemaSeats;

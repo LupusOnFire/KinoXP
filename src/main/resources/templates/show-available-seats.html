@@ -9,8 +9,8 @@
 <div>
     <table>
         <tbody>
-            <tr th:each="i: ${#numbers.sequence(0, cinema.rows-1)}">
-                <td th:each="i: ${#numbers.sequence(0, cinema.columns-1)}">hej</td>
+            <tr th:each="i: ${#numbers.sequence(1, cinema.rows)}">
+                <td th:each="j: ${#numbers.sequence(1, cinema.columns)}" th:text=" ${seats[((i*cinema.columns+j)-cinema.columns-1)].seatState}"></td>
             </tr>
         </tbody>
     </table>
