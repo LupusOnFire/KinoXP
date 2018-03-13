@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: head">
     <link rel="stylesheet" type="text/css" href="../static/main.css" />
-
-    <meta charset="UTF-8"/>
-    <title>Overblik over forestillinger</title>
+    <title>Title</title>
 </head>
+
+<body>
 <div th:include="fragments/menu :: menu"></div>
 <div id ="bodyContainer">
 
@@ -20,6 +20,7 @@
     -->
 
     <div id="movieContainer">
+        <div class="popup" onclick="myFunction()">
         <div id="movieHeader">Pulp Fiction</div>
         <div id="movieContent">
             <div id="contentLeft">
@@ -31,6 +32,18 @@
                 <p>John Travolta<br/>Uma Thurman<br/>Samuel L. Jackson</p>
 
             </div>
+                <span class="popuptext" id="myPopup">
+                <div th:each="showing : ${showings}"></div>
+                </span>
+            </div>
+
+            <script>
+                function myFunction() {
+                    var popup = document.getElementById("myPopup");
+                    popup.classList.toggle("show");
+                }
+            </script>
+
 
 
         </div>
