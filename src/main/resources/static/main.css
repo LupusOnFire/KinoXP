@@ -134,3 +134,19 @@ body {
     -webkit-border-radius: 5px;
     text-align: center;
 }
+.seat {
+    width:25px;
+    height: 25px;
+    border-width: 2px;
+    border-style: double;
+    border-color: black;
+}
+.EMPTY {
+    background-color: green;
+}
+.RESERVED {
+    background-color:blue;
+}
+.PAID {
+    background-color: red;
+}
