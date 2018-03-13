@@ -7,19 +7,12 @@ import dk.kinoxp.web.model.entities.User;
 import dk.kinoxp.web.model.repositories.*;
 import dk.kinoxp.web.model.entities.*;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
-import dk.kinoxp.web.model.services.BookingCreator;
-import dk.kinoxp.web.model.services.CinemaCreator;
-import dk.kinoxp.web.model.services.PasswordService;
-import dk.kinoxp.web.model.services.ShowingService;
-import dk.kinoxp.web.model.services.UserCreator;
+import dk.kinoxp.web.model.services.*;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,6 +38,9 @@ public class MainController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ActorRepository actorRepository;
 
 
     public MainController() {
@@ -193,6 +189,25 @@ public class MainController {
         return "create-booking";
     }
 
+    @RequestMapping(value = "/create-actor", method = RequestMethod.GET)
+    public String createActor(Model model, HttpSession session){
+        model.addAttribute("actor", new Actor());
+
+        if (sessionController(session)){
+            return "create-actor";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping(value = "/create-actor", method = RequestMethod.POST)
+    public String createActor(Model model, Actor actor) {
+        ActorCreator actorCreator = new ActorCreator();
+        actorRepository.save(actorCreator.createActor(actor.getName()));
+        return "redirect:/index";
+    }
+
+
     private boolean sessionController(HttpSession session){
         if(session.getAttribute("status") != null && session.getAttribute("status").equals("1")){
             return true;
@@ -200,5 +215,6 @@ public class MainController {
             return false;
         }
     }
+
 
 }
