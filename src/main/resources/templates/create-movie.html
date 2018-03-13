@@ -11,12 +11,6 @@
         <h2 style="color: #fff;">Create movie</h2>
         <form method="POST" action="/create-movie">
             <input type="text" name="title" value="title"/>
-            <input type="text" name="description" value="description"/>
-            <input type="text" name="age_rating" value="age rating"/>
-            <input type="text" name="runtime" value="length"/>-->
-            <select>
-                <option th:each="actor : ${actors}" value="${name}">test</option>
-            </select>
             <input type="submit"  value="create"/>
         </form>
 
