@@ -231,8 +231,9 @@ public class MainController {
     }
 
     @RequestMapping(value = {"view-showings"}, method = RequestMethod.GET)
-    public String viewShowings(Model model, HttpServletRequest request, HttpSession session){
-        model.addAttribute("showings",showingRepository.findAll());
+    public String viewShowings(Model model, HttpServletRequest request, HttpSession session, @RequestParam int movieId){
+        model.addAttribute("showings",showingRepository.findAllByMovie_Id(movieId));
+        model.addAttribute("movie", movieRepository.findById(movieId));
 
         if (sessionController(session)){
             return "view-showings";
