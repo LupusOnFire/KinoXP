@@ -29,13 +29,12 @@
                     <div id="contentRight" >
                         <p th:text="${movie.description}"></p>
                         <br/>
-                        <p>John Travolta<br/>Uma Thurman<br/>Samuel L. Jackson</p>
-
+                        <div th:each="i: ${#numbers.sequence(0,2)}">
+                            <p th:text="${movieList.get(6).getActors().get(i).getName()}"></p>
+                        </div>
                     </div>
-
-
                 </div>
-                <div id="movieFooter">154m, R rating</div>
+                <div id="movieFooter"> <p th:text="${movie.runtime}" style="float: left"></p> <p th:text="${movie.age}"></p></div>
             </div>
         </div>
 

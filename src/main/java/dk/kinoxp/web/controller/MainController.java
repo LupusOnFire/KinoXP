@@ -57,8 +57,6 @@ public class MainController {
 
         model.addAttribute("movieList",movieList);
 
-        System.out.println("THIS IS THE MOVIELIST" + movieList);
-
         if (sessionController(session)){
             return "index";
         } else {
