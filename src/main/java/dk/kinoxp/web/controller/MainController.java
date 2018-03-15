@@ -49,7 +49,16 @@ public class MainController {
 
 
     @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
-    public String index(HttpServletRequest request, HttpSession session){
+    public String index(HttpServletRequest request, HttpSession session, Model model){
+
+        List<Movie> movieList;
+
+        movieList = movieRepository.findAll();
+
+        model.addAttribute("movieList",movieList);
+
+        System.out.println("THIS IS THE MOVIELIST" + movieList);
+
         if (sessionController(session)){
             return "index";
         } else {
@@ -137,7 +146,7 @@ public class MainController {
                 return "login";
             }
         }
-        return "index";
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
