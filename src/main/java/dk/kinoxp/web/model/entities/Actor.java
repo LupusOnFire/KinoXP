@@ -15,9 +15,6 @@ import javax.persistence.*;
         @Column(name = "name")
         private String name;
 
-        @Column(name = "photo_path")
-        private String photoPath;
-
         public Actor() {
         }
 
@@ -33,20 +30,12 @@ import javax.persistence.*;
             return name;
         }
 
-        public String getPhotoPath() {
-            return photoPath;
-        }
-
         public void setId(int id) {
             this.id = id;
         }
 
         public void setName(String name) {
             this.name = name;
-        }
-
-        public void setPhotoPath(String photoPath) {
-            this.photoPath = photoPath;
         }
 
     }

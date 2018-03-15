@@ -165,6 +165,27 @@ public class MainController {
         }
     }
 
+    @RequestMapping(value = "/create-movie", method = RequestMethod.GET)
+    public String createMovie(Model model, HttpSession session){
+        model.addAttribute("movie", new Movie());
+
+        if (sessionController(session)){
+            return "create-movie";
+        } else {
+            return "login";
+        }
+    }
+    @RequestMapping(value = "/create-movie", method = RequestMethod.POST)
+    public String createMovie(Model model, Movie movie) {
+
+        MovieFetchService movieFetchService = new MovieFetchService(actorRepository);
+
+        Movie omdbMovie = movieFetchService.getMovieFromTitle(movie.getTitle());
+        movieRepository.save(omdbMovie);
+
+        return "redirect:/index";
+    }
+
     @RequestMapping(value = "/create-user", method = RequestMethod.POST)
     public String createUser(Model model, User user) {
         PasswordService passwordService = new PasswordService();
