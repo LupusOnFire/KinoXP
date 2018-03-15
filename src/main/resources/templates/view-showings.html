@@ -40,9 +40,18 @@
                 <p>John Travolta<br/>Uma Thurman<br/>Samuel L. Jackson</p>
 
             </div>
-                <span class="popuptext" id="myPopup">
-                    <div th:each="showing : ${showings}">
-                    <h1>loop test</h1>
+                <span class="popuptext" id="myPopup" th:href="@{/view-showings(movieId=${movie.id})}">
+                    <div>
+                    <table>
+                        <tr>
+                            <td>Tidspunkt og dato </td>
+                            <td>Sal</td>
+                        </tr>
+                        <tr th:each="showing : ${showings}">
+                            <td th:text="${showing.time}"></td>
+                            <td th:text="${showing.cinema.id}"></td>
+                        </tr>
+                    </table>
                     </div>
                 </span>
         </div>
