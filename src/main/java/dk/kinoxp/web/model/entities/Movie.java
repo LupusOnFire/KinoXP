@@ -23,6 +23,9 @@ public class Movie {
     @Column(name="poster_path")
     private String posterPath;
 
+    @Column(name="runtime")
+    private String runtime;
+
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name = "movie_actor",
             joinColumns = @JoinColumn(name = "movie_id"),
@@ -40,6 +43,16 @@ public class Movie {
         this.age = age;
         this.posterPath = posterPath;
     }
+    public Movie(String title, String description, String age, String posterPath, String runtime, List<Actor> actors) {
+        this.title = title;
+        this.description = description;
+        this.age = age;
+        this.posterPath = posterPath;
+        this.runtime = runtime;
+        this.actors = actors;
+    }
+
+
 
     public int getId() {
         return id;
@@ -80,6 +93,10 @@ public class Movie {
     public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
+
+    public String getRuntime() { return runtime; }
+
+    public void setRuntime(String runtime) { this.runtime = runtime; }
 
     public void setAge(String age) {
         this.age = age;

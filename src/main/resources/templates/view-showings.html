@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head">
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
+    <title>Title</title>
+</head>
+
+
+<script>
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+
+<body>
+<div th:include="fragments/menu :: menu"></div>
+<div id ="bodyContainer">
+
+    <!-- Farve demo (udkommenteret til fremvisning)
+    <p>Farve demo til Kino XP</p>
+    <div id="movieTestContainer">
+        <div id="color1">#273449</div>
+        <div id="color2">#45435E</div>
+        <div id="color3">#5A586B</div>
+    </div>
+    <p>En design demo til Kino XP</p>
+    -->
+
+    <div id="movieContainer">
+        <div class="popup" onclick="myFunction()">
+        <div id="movieHeader">Pulp Fiction</div>
+        <div id="movieContent">
+            <div id="contentLeft">
+                <img src="https://i.imgur.com/6w4YA72.jpg" height="100%" width="100%" />
+            </div>
+            <div id="contentRight">
+                <p>The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.</p>
+                <br/>
+                <p>John Travolta<br/>Uma Thurman<br/>Samuel L. Jackson</p>
+
+            </div>
+                <span class="popuptext" id="myPopup" th:href="@{/view-showings(movieId=${movie.id})}">
+                    <div>
+                    <table>
+                        <tr>
+                            <td>Tidspunkt og dato </td>
+                            <td>Sal</td>
+                        </tr>
+                        <tr th:each="showing : ${showings}">
+                            <td th:text="${showing.time}"></td>
+                            <td th:text="${showing.cinema.id}"></td>
+                        </tr>
+                    </table>
+                    </div>
+                </span>
+        </div>
+
+        <div id="movieFooter">154m, R rating</div>
+
+        </div>
+    </div>
+    <br/>
+    <div id="movieContainer">
+        <div id="movieHeader">Black Panther</div>
+        <div id="movieContent">
+            <div id="contentLeft">
+                <img src="https://i.imgur.com/oSUc6tC.jpg" height="100%" width="100%" />
+            </div>
+            <div id="contentRight">
+                <p>T'Challa, the King of Wakanda, rises to the throne in the isolated, technologically advanced African nation, but his claim is challenged by a vengeful outsider who was a childhood victim of T'Challa's father's mistake.</p>
+                <br/>
+                <p>Chadwick Boseman<br/>Michael B. Jordan<br/>Lupita Nyong'o</p>
+
+            </div>
+        </div>
+        <div id="movieFooter">134m, PG-13</div>
+    </div>
+</div>
+<th:block th:include="fragments/footer :: scripts"></th:block>
+</body>
+</html>

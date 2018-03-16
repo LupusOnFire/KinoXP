@@ -7,22 +7,16 @@ import dk.kinoxp.web.model.entities.User;
 import dk.kinoxp.web.model.repositories.*;
 import dk.kinoxp.web.model.entities.*;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
-import dk.kinoxp.web.model.services.BookingCreator;
-import dk.kinoxp.web.model.services.CinemaCreator;
-import dk.kinoxp.web.model.services.PasswordService;
-import dk.kinoxp.web.model.services.ShowingService;
-import dk.kinoxp.web.model.services.UserCreator;
+import dk.kinoxp.web.model.services.*;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,19 +40,30 @@ public class MainController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    ActorRepository actorRepository;
+
 
     public MainController() {
     }
 
 
     @RequestMapping(value = {"", "/", "index"}, method = RequestMethod.GET)
-    public String index(HttpServletRequest request, HttpSession session){
+    public String index(HttpServletRequest request, HttpSession session, Model model){
+
+        List<Movie> movieList;
+
+        movieList = movieRepository.findAll();
+
+        model.addAttribute("movieList",movieList);
+
         if (sessionController(session)){
             return "index";
         } else {
             return "login";
         }
     }
+
     @RequestMapping(value = {"create-cinema"}, method = RequestMethod.GET, params = {"cinemaId", "cinemaHeight", "cinemaWidth", "rowCount", "columnCount"})
     public String createCinema(Model model, HttpSession session, @RequestParam int cinemaId, @RequestParam double cinemaHeight, @RequestParam double cinemaWidth, @RequestParam int rowCount, @RequestParam int columnCount) {
         /* Example usage :
@@ -80,14 +85,14 @@ public class MainController {
 
 
     @RequestMapping(value = {"create-showing-info"}, method = RequestMethod.GET)
-        public String createShowingInfo(Model model, HttpSession session) {
+    public String createShowingInfo(Model model, HttpSession session) {
 
         model.addAttribute("movieList", movieRepository.findAll());
         model.addAttribute("showing", new ShowingDto());
         model.addAttribute("cinemaList", cinemaRepository.findAll());
 
 
-     //   System.out.println(movieRepository.findAll().toString());
+        //   System.out.println(movieRepository.findAll().toString());
 
         if (sessionController(session)){
             return "create-showing-info";
@@ -139,7 +144,7 @@ public class MainController {
                 return "login";
             }
         }
-        return "index";
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -165,6 +170,27 @@ public class MainController {
         } else {
             return "login";
         }
+    }
+
+    @RequestMapping(value = "/create-movie", method = RequestMethod.GET)
+    public String createMovie(Model model, HttpSession session){
+        model.addAttribute("movie", new Movie());
+
+        if (sessionController(session)){
+            return "create-movie";
+        } else {
+            return "login";
+        }
+    }
+    @RequestMapping(value = "/create-movie", method = RequestMethod.POST)
+    public String createMovie(Model model, Movie movie) {
+
+        MovieFetchService movieFetchService = new MovieFetchService(actorRepository);
+
+        Movie omdbMovie = movieFetchService.getMovieFromTitle(movie.getTitle());
+        movieRepository.save(omdbMovie);
+
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/create-user", method = RequestMethod.POST)
@@ -193,6 +219,36 @@ public class MainController {
         return "create-booking";
     }
 
+    @RequestMapping(value = "/create-actor", method = RequestMethod.GET)
+    public String createActor(Model model, HttpSession session){
+        model.addAttribute("actor", new Actor());
+
+        if (sessionController(session)){
+            return "create-actor";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping(value = "/create-actor", method = RequestMethod.POST)
+    public String createActor(Model model, Actor actor) {
+        ActorCreator actorCreator = new ActorCreator();
+        actorRepository.save(actorCreator.createActor(actor.getName()));
+        return "redirect:/index";
+    }
+
+    @RequestMapping(value = {"view-showings"}, method = RequestMethod.GET)
+    public String viewShowings(Model model, HttpServletRequest request, HttpSession session, @RequestParam int movieId){
+        model.addAttribute("showings",showingRepository.findAllByMovie_Id(movieId));
+        model.addAttribute("movie", movieRepository.findById(movieId));
+
+        if (sessionController(session)){
+            return "view-showings";
+        } else {
+            return "login";
+        }
+    }
+
     private boolean sessionController(HttpSession session){
         if(session.getAttribute("status") != null && session.getAttribute("status").equals("1")){
             return true;
@@ -200,5 +256,6 @@ public class MainController {
             return false;
         }
     }
+
 
 }

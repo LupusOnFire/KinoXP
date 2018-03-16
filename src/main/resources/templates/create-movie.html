@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head">
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
+    <meta charset="UTF-8" />
+    <title>Create movie</title>
+</head>
+<body>
+<div th:include="fragments/menu :: menu"></div>
+<div id ="bodyContainer">
+        <h2 style="color: #fff;">Create movie</h2>
+        <form method="POST" action="/create-movie">
+            <input type="text" name="title" value="title"/>
+            <input type="submit"  value="create"/>
+        </form>
+
+</div>
+<th:block th:include="fragments/footer :: scripts"></th:block>
+</body>
+</html>

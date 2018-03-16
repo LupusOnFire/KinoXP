@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface ShowingRepository extends JpaRepository<Showing, Integer> {
@@ -12,4 +13,5 @@ public interface ShowingRepository extends JpaRepository<Showing, Integer> {
     Showing findByCinemaId(int id);
     Showing findByMovie_Title(String title);
     Showing findByTime(Date time);
+    List<Showing> findAllByMovie_Id(int movieId);
 }

@@ -15,15 +15,11 @@ import javax.persistence.*;
         @Column(name = "name")
         private String name;
 
-        @Column(name = "photo_path")
-        private String photoPath;
-
         public Actor() {
         }
 
-        public Actor(String name, String photoPath) {
+        public Actor(String name) {
             this.name = name;
-            this.photoPath = photoPath;
         }
 
         public int getId() {
@@ -34,20 +30,12 @@ import javax.persistence.*;
             return name;
         }
 
-        public String getPhotoPath() {
-            return photoPath;
-        }
-
         public void setId(int id) {
             this.id = id;
         }
 
         public void setName(String name) {
             this.name = name;
-        }
-
-        public void setPhotoPath(String photoPath) {
-            this.photoPath = photoPath;
         }
 
     }

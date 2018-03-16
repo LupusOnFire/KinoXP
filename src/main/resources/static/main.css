@@ -65,6 +65,8 @@ body {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 #movieHeader {
@@ -133,4 +135,55 @@ body {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     text-align: center;
+}
+.seat {
+    width:25px;
+    height: 25px;
+    border-width: 2px;
+    border-style: double;
+    border-color: black;
+}
+.EMPTY {
+    background-color: green;
+}
+.RESERVED {
+    background-color:blue;
+}
+.PAID {
+    background-color: red;
+}
+
+
+
+/* Popup container - modified version of https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup - modified version of https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup
+ absolute position to the movieContainer
+ with same height and width, positioned 50 px down (under the header)
+ */
+.popup .popuptext {
+    position: absolute;
+    visibility: hidden;
+    background-color: #45435E;
+    color: #fff;
+    text-align: center;
+    top: 50px;
+    left: 0;
+    right: 0;
+    width: 1000px;
+    height: 500px;
+}
+
+/* Toggle this class - hide and show the popup - modified version of https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup*/
+.popup .show {
+    visibility: visible;
 }

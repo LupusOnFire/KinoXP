@@ -1,5 +1,8 @@
 package dk.kinoxp.web;
 
+import dk.kinoxp.web.model.entities.Movie;
+import dk.kinoxp.web.model.services.MovieFetchService;
+import dk.kinoxp.web.model.services.OmdbClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

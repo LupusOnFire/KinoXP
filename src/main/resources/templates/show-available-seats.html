@@ -8,9 +8,16 @@
 <body>
 <div>
     <table>
+        <thead>
+            <th></th><th th:each="i: ${#numbers.sequence(1, cinema.columns)}" th:text="${i}"></th>
+        </thead>
         <tbody>
             <tr th:each="i: ${#numbers.sequence(1, cinema.rows)}">
-                <td th:each="j: ${#numbers.sequence(1, cinema.columns)}" th:text=" ${seats[((i*cinema.columns+j)-cinema.columns-1)].seatState}"></td>
+                <td th:text="${i}"></td>
+                <td th:each="j: ${#numbers.sequence(1, cinema.columns)}"
+                    class="seat"
+                    th:classappend="${seats[((i*cinema.columns+j)-cinema.columns-1)].seatState}">
+                </td>
             </tr>
         </tbody>
     </table>
