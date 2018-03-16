@@ -19,7 +19,7 @@
     <p>En design demo til Kino XP</p>
     -->
 
-        <div th:each="movie: ${movieList}">
+        <div th:each="movie : ${movieList}">
             <div id="movieContainer">
                 <div id="movieHeader" th:text="${movie.title}"></div>
                 <div id="movieContent">
@@ -29,8 +29,8 @@
                     <div id="contentRight" >
                         <p th:text="${movie.description}"></p>
                         <br/>
-                        <div th:each="i: ${#numbers.sequence(0,2)}">
-                            <p th:text="${movieList.get(6).getActors().get(i).getName()}"></p>
+                            <div th:each="i: ${movie.getActors()}">
+                            <p th:text="${i.name}"></p>
                         </div>
                     </div>
                 </div>
