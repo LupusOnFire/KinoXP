@@ -111,6 +111,28 @@ public class MainController {
         return "/index";
     }
 
+    @RequestMapping (value = {"update-showing"}, method = RequestMethod.GET)
+    public String updateShowing(Model model, HttpSession session)
+    {
+    model.addAttribute("showingList", showingRepository.findAll());
+    model.addAttribute("showing", new ShowingDto());
+
+        if (sessionController(session)){
+            return "update-showing";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping (value = {"update-showing"}, method = RequestMethod.POST)
+    public String getUpdateShowing(@ModelAttribute("showings") Model model)
+    {
+        //Gem funktion mangler
+
+
+        return "/index";
+    }
+
 
     @RequestMapping(value = {"show-available-seats"}, method = RequestMethod.GET, params = {"showingId"})
     public String getAvailableSeatsForShowing(Model model, @RequestParam int showingId) {
