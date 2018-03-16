@@ -15,19 +15,19 @@
                 <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Booking<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Create</a></li>
-                        <li><a href="#">View / Update</a></li>
+                        <li><a href="/update-showing">Vis/Opdater visninger</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Showing<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/create-showing-info">Create Showing</a></li>
-                        <li><a href="/view-showings">View Showing</a></li>
+                        <li><a href="/update-showing">Vis/Opdater visninger</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movie<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/create-movie">Create Movie</a></li>
-                        <li><a href="#">View / Update</a></li>
+                        <li><a href="/update-showing">Vis/Opdater visninger</a></li>
                     </ul>
                 </li>
                 <li th:if="${session.status == null}"><a href="/login">Login</a></li>
