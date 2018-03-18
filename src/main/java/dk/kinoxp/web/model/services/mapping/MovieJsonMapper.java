@@ -39,6 +39,7 @@ public class MovieJsonMapper
             String description = obj.getString("Plot");
             String posterPath = obj.getString("Poster");
             String actors = obj.getString("Actors");
+            String imdbId = obj.getString("imdbID");
 
             String[] actorArray = actors.split(",");
             List<Actor> actorList = new LinkedList<>();
@@ -49,7 +50,7 @@ public class MovieJsonMapper
                 actorList.add( actorRecycle.findOrCreateActor(actorArray[i]));
             }
 
-            movie = new Movie(title, description, rated, posterPath, runtime, actorList);
+            movie = new Movie(title, description, rated, posterPath, runtime, imdbId, actorList);
 
         } catch (JSONException e) {
             e.printStackTrace();
