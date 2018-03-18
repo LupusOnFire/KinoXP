@@ -29,6 +29,13 @@ public class Showing {
 
     }
 
+    public Showing(int id, Date time, Movie movie, Cinema cinema) {
+        this.id = id;
+        this.time = time;
+        this.movie = movie;
+        this.cinema = cinema;
+    }
+
     public Showing(Date time, Movie movie, Cinema cinema) {
         this.time = time;
         this.movie = movie;

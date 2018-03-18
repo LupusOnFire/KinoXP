@@ -13,6 +13,7 @@ public class ShowingDto {
     @DateTimeFormat (pattern = "yyyy-MM-dd'T'HH:mm")
     private Date time;
     private int movieId;
+    private String movieTitle;
     private int cinemaId;
 
     public ShowingDto(int id, Date time, int movieId, int cinemaId) {
@@ -21,6 +22,15 @@ public class ShowingDto {
         this.movieId = movieId;
         this.cinemaId = cinemaId;
     }
+
+    public ShowingDto(int id, Date time, int movieId, String movieTitle, int cinemaId) {
+        this.id = id;
+        this.time = time;
+        this.movieId = movieId;
+        this.movieTitle = movieTitle;
+        this.cinemaId = cinemaId;
+    }
+
     public ShowingDto(){
 
     }
@@ -55,6 +65,14 @@ public class ShowingDto {
 
     public void setCinemaId(int cinemaId) {
         this.cinemaId = cinemaId;
+    }
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     @Override

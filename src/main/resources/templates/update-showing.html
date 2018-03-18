@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head th:replace="fragments/header :: head">
-        <link rel="stylesheet" type="text/css" href="../static/main.css" />
+<head th:replace="fragments/header :: head">
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
     <title>Opdater dat shit</title>
 
 </head>
 
 <body>
 <div th:include="fragments/menu :: menu"></div>
+<div class="container">
 
-<form modelAttribute="showings" th:action="@{update-showing}" method="post" action="/update-showing" th:object="${showingList}">
+    <form th:action="@{/update-showing(showingId=${showing.id})}" th:method="POST" th:object="${showing}">
+        <div>
+            <table>
+                <tr>
+                    <td>Film</td><td><input disabled th:field="${showing.movieTitle}" th:placeholder="${showing.movieTitle}" /></td>
+                </tr>
+                <tr>
+                    <td>Tidspunkt</td><td><input th:field="${showing.time}" th:value="${showing.time}" th:placeholder="${showing.time}" /></td>
+                </tr>
+                <tr>
+                    <td>Sal</td><td><input th:field="${showing.cinemaId}" th:value="${showing.cinemaId}" th:placeholder="${showing.cinemaId}" /></td>
+                </tr>
+            </table>
 
-    <div th:each="showing : ${showingList}">
+        </div>
+        <input type="submit" value="Gem" />
+    </form>
 
-        <input disabled th:value="${showing.id}" th:placeholder="${showing.id}" >
-        <input disabled th:value="${showing.movie?.title}" th:placeholder="${showing.movie?.title}">
-        <input th:value ="${showing.time}" th:placeholder="${showing.time}">
-        <input th:value ="${showing.cinema?.id}" th:placeholder="${showing.cinema?.id}">
 
-    </div>
-    <input type="submit" value="Gem">
+</div>
 
-</form>
+
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
 </html>
