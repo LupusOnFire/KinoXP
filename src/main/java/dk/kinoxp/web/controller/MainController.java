@@ -9,6 +9,7 @@ import dk.kinoxp.web.model.entities.*;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
 import dk.kinoxp.web.model.services.*;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,8 +52,12 @@ public class MainController {
     public String index(HttpServletRequest request, HttpSession session, Model model){
 
         List<Movie> movieList;
+        PosterService posterService = new PosterService();
 
         movieList = movieRepository.findAll();
+        for (Movie movie : movieList) {
+            posterService.initializePoster(movie);
+        }
 
         model.addAttribute("movieList",movieList);
 
