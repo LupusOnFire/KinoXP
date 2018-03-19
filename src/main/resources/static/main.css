@@ -129,7 +129,11 @@ body {
     visibility: visible;
 }
 
-/* Custom table background */
+/* Custom table styling */
 .cstm-tbl-bg {
-    background-color: #dddddd; !important;
+    background-color: #273449; !important;
+    color: #ffffff; !important;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #3d4c64;
 }
