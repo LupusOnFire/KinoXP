@@ -6,12 +6,11 @@
 </head>
 <body>
 <div th:fragment="menu">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-
+    <div class="container">
+    <nav class="navbar navbar-inverse" id="menu">
             <!-- Logo -->
             <div class="navbar-header">
-                <a href="#"><img src="https://imgur.com/jHTsJxu.jpg" class="navbar-brand" alt="logo"/></a>
+                <a href=""><img src="https://imgur.com/jHTsJxu.jpg" class="navbar-brand" alt="logo"/></a>
             </div>
 
 
@@ -40,8 +39,8 @@
                     <li th:if="${session.status != null}"><a href="/logout">Logout</a></li>
                 </ul>
             </div>
-        </div>
     </nav>
+    </div>
 </div>
 <!--
 <li class="active"><a href="#">Home</a></li>

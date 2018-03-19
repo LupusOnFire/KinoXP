@@ -1,24 +1,19 @@
 body {
     background-color: #5A586B;
 }
-
-#bodyContainer {
-    max-width: 1000px; /* max-width sat til 1080p width, så alle normale skærme centerer indholdet. */
-    margin: auto;
-    padding: 10px;
+.fill {
+    background-color: #45435E;
+    border-radius: 5px;
+    margin-top:-15px;
+    color:white;
 }
 
-#movieTestContainer {
-    color: #FFF;
-    width: 1000px;
-    height: 200px;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    text-align: center;
+#menu {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.navbar-inverse {
+    background-color:#273449;
 }
 
 #color1 {
@@ -54,66 +49,10 @@ body {
     text-align: center;
 }
 
-#movieContainer {
-    color: #FFF;
-    width: 1000px;
-    height: 600px;
-    padding: 0;
-    margin: 0;
-    border: 0px solid #000;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    text-align: center;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-}
 
-#movieHeader {
-    width: 1000px;
-    height: 50px;
-    background-color: #273449;
-    padding: 0;
-    margin: 0;
-    border-radius: 20px 20px 0 0;
-    text-align: center;
-    font-size: 32px;
-}
 
-#movieContent {
-    width: 1000px;
-    height: 500px;
-    background-color: #45435E;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    text-align: center;
-}
 
-#contentLeft {
-    width: 40%;
-    height: 500px;
-    background-color: #45435E;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    float: left;
-    text-align: center;
-}
-
-#contentRight {
-    width: 58%;
-    height: 500px;
-    background-color: #45435E;
-    padding: 1em;
-    margin: 0;
-    border: 0;
-    float: left;
-    text-align: center;
-    font-size: 20px;
-}
-
-#movieFooter {
+/*#movieFooter {
     background-color: #273449;
     width: 1000px;
     height: 50px;
@@ -122,7 +61,7 @@ body {
     border-radius: 0 0 20px 20px;
     text-align: center;
     font-size: 32px;
-}
+} */
 
 #loginContainer {
     color: #000;

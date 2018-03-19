@@ -7,7 +7,7 @@
 
     <body>
     <div th:include="fragments/menu :: menu"></div>
-    <div id ="bodyContainer">
+    <div class="container fill">
 
     <!-- Farve demo (udkommenteret til fremvisning)
     <p>Farve demo til Kino XP</p>
@@ -18,16 +18,32 @@
     </div>
     <p>En design demo til Kino XP</p>
     -->
+        <div th:each="movie : ${movieList}" th:class="row">
+            <div>
+                <img th:src="@{/files/images/posters/} + ${movie.imdbId + '.jpg'}" />
+            </div>
+            <div>
+                <h2 th:class="text-center" th:text="${movie.title}"></h2>
+                <table>
+                    <tbody>
+                        <tr th:class="text-left">
+                            <td>Beskrivelse: </td>
+                            <td th:text="${movie.description}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        <div th:each="movie : ${movieList}">
-            <div id="movieContainer">
-                <div id="movieHeader" th:text="${movie.title}"></div>
+        <!--<div th:each="movie : ${movieList}">
+            <div id="movie-container">
+                <div id="movie-Header" th:text="${movie.title}"></div>
                 <div id="movieContent">
                     <div id="contentLeft">
                         <!-- th:href="@{/update-showing(showingId=${showing.id})} -->
-                        <img th:src="@{/files/images/posters/} + ${movie.imdbId + '.jpg'}" height="100%" width="100%" />-
+                        <!--<img th:src="@{/files/images/posters/} + ${movie.imdbId + '.jpg'}" />-->
                         <!--<img th:src="@{/images/black-panther.jpg}" height="100%" width="100%" />-->
-                    </div>
+                    <!--</div>
                     <div id="contentRight" >
                         <p th:text="${movie.description}"></p>
                         <br/>
@@ -38,24 +54,9 @@
                 </div>
                 <div id="movieFooter"> <p th:text="${movie.runtime}" style="float: left"></p> <p th:text="${movie.age}"></p></div>
             </div>
-        </div>
+        </div> -->
 
     <br/>
-    <!--<div id="movieContainer">
-        <div id="movieHeader">Black Panther</div>
-        <div id="movieContent">
-            <div id="contentLeft">
-                <img src="https://i.imgur.com/oSUc6tC.jpg" height="100%" width="100%" />
-            </div>
-            <div id="contentRight">
-                <p>T'Challa, the King of Wakanda, rises to the throne in the isolated, technologically advanced African nation, but his claim is challenged by a vengeful outsider who was a childhood victim of T'Challa's father's mistake.</p>
-                <br/>
-                <p>Chadwick Boseman<br/>Michael B. Jordan<br/>Lupita Nyong'o</p>
-
-            </div>
-        </div>
-        <div id="movieFooter">134m, PG-13</div>
-    </div>-->
 </div>
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
