@@ -9,7 +9,7 @@
 <body>
 <div th:include="fragments/menu :: menu"></div>
 <div class="container">
-    <table class="table-bordered">
+    <table class="table table-bordered table-hover cstm-tbl-bg ">
         <thead>
         <tr>
             <th>ID</th>
@@ -19,16 +19,15 @@
             <th>Plakat</th>
             <th>Længde</th>
             <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="movie : ${movieList}">
             <td th:text="${movie.id}"></td>
-            <td th:text="${movie.title}"></td>
-            <td th:text="${movie.description}"></td>
+            <td ><strong class="h3" th:text="${movie.title}"></strong></td>
             <td th:text="${movie.age}"></td>
-            <td th:text="${movie.posterPath}"></td>
+            <td th:text="${#strings.abbreviate(movie.description, 75)}"></td>
+
             <td th:text="${movie.runtime}"></td>
             <td><a th:href="@{/update-movie(movieId=${movie.id})}" th:text="Rediger"></a></td>
             <td><a th:href="@{/delete-movie(movieId=${movie.id})}" th:text="Slet"></a></td>
