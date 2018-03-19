@@ -18,6 +18,9 @@ body {
 .navbar {
     border:0px;
 }
+.navbar-brand {
+    padding: 0px;
+}
 
 .movie-block {
     padding-top:20px;
@@ -34,6 +37,11 @@ body {
     border-radius: 10px;
     border: 5px #eaca4b;
     border-style:solid;
+}
+
+.image-round-left {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .color1 {
