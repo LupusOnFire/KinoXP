@@ -7,32 +7,39 @@
 <body>
 <div th:fragment="menu">
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div style="float: left">
-                <a href="/"><img src="https://imgur.com/jHTsJxu.jpg" style="height: 50px"/></a>
+        <div class="container">
+
+            <!-- Logo -->
+            <div class="navbar-header">
+                <a href="#"><img src="https://imgur.com/jHTsJxu.jpg" class="navbar-brand" alt="logo"/></a>
             </div>
-            <ul class="nav navbar-nav">
-                <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Booking<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Create</a></li>
-                        <li><a href="#">View / Update</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Showing<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/create-showing-info">Create Showing</a></li>
-                        <li><a href="/view-showings">View Showing</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movie<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/create-movie">Create Movie</a></li>
-                        <li><a href="#">View / Update</a></li>
-                    </ul>
-                </li>
-                <li th:if="${session.status == null}"><a href="/login">Login</a></li>
-                <li th:if="${session.status != null}"><a href="/logout">Logout</a></li>
-            </ul>
+
+
+            <!-- Menu Items -->
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Booking<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Create</a></li>
+                            <li><a href="/update-showing">Vis/Opdater visninger</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Forestilling<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/create-showing-info">Opret forestilling</a></li>
+                            <li><a href="/view-showings">Vis Opdater/forestilling</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Film<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/create-movie">Opret film</a></li>
+                            <li><a href="/view-movies">Vis/Opdater film</a></li>
+                        </ul>
+                    </li>
+                    <li th:if="${session.status == null}"><a href="/login">Login</a></li>
+                    <li th:if="${session.status != null}"><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 </div>

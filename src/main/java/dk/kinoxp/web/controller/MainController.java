@@ -9,6 +9,7 @@ import dk.kinoxp.web.model.entities.*;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
 import dk.kinoxp.web.model.services.*;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -52,8 +52,12 @@ public class MainController {
     public String index(HttpServletRequest request, HttpSession session, Model model){
 
         List<Movie> movieList;
+        PosterService posterService = new PosterService();
 
         movieList = movieRepository.findAll();
+        for (Movie movie : movieList) {
+            posterService.initializePoster(movie);
+        }
 
         model.addAttribute("movieList",movieList);
 
@@ -109,6 +113,37 @@ public class MainController {
         showing.setTime((showingDto.getTime()));
         showingRepository.save(showing);
         return "/index";
+    }
+
+    @RequestMapping (value = {"view-showings"}, method = RequestMethod.GET)
+    public String viewShowing(Model model, HttpSession session)
+    {
+    model.addAttribute("showingList", showingRepository.findAll());
+        if (sessionController(session)){
+            return "view-showings";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping (value = {"update-showing"}, method = RequestMethod.GET)
+    public String getUpdateShowing(Model model, @RequestParam int showingId)
+    {
+        Showing showing = showingRepository.findById(showingId);
+        ShowingDto showingDto = new ShowingDto(showing.getId(), showing.getTime(), showing.getMovie().getId(), showing.getMovie().getTitle(), showing.getCinema().getId());
+        model.addAttribute("showing", showingDto);
+        return "/update-showing";
+    }
+
+    @RequestMapping (value = {"update-showing"}, method = RequestMethod.POST)
+    public String setUpdateShowing(@ModelAttribute("showing") ShowingDto showing, @RequestParam int showingId)
+    {
+        Showing showingObj = showingRepository.findById(showingId);
+        showingObj.setTime(showing.getTime());
+        showingObj.setCinema(cinemaRepository.findById(showing.getCinemaId()));
+
+        showingRepository.save(showingObj);
+        return "redirect:/view-showings";
     }
 
 
@@ -237,17 +272,41 @@ public class MainController {
         return "redirect:/index";
     }
 
-    @RequestMapping(value = {"view-showings"}, method = RequestMethod.GET)
-    public String viewShowings(Model model, HttpServletRequest request, HttpSession session, @RequestParam int movieId){
-        model.addAttribute("showings",showingRepository.findAllByMovie_Id(movieId));
-        model.addAttribute("movie", movieRepository.findById(movieId));
-
-        if (sessionController(session)){
-            return "view-showings";
-        } else {
-            return "login";
-        }
+    @RequestMapping(value = "/view-movies", method = RequestMethod.GET)
+    public String viewMovies(Model model) {
+        model.addAttribute("movieList", movieRepository.findAll());
+        return "view-movies";
     }
+
+    @RequestMapping (value = {"update-movie"}, method = RequestMethod.GET)
+    public String getUpdateMovie(Model model, @RequestParam int movieId)
+    {
+        Movie movie = movieRepository.findById(movieId);
+        model.addAttribute("movie", movie);
+        return "/update-movie";
+    }
+
+    @RequestMapping (value = {"update-movie"}, method = RequestMethod.POST)
+    public String setUpdateShowing(@ModelAttribute("movie") Movie newMovie, @RequestParam int movieId)
+    {
+        Movie movie = movieRepository.findById(movieId);
+        movie.setAge(newMovie.getAge());
+        movie.setTitle(newMovie.getTitle());
+        movie.setDescription(newMovie.getDescription());
+        movie.setPosterPath(newMovie.getPosterPath());
+        movie.setRuntime(newMovie.getRuntime());
+
+        movieRepository.save(movie);
+        return "redirect:/view-movies";
+    }
+
+    @RequestMapping (value = {"delete-movie"}, method = RequestMethod.GET)
+    public String deleteMovie(@RequestParam int movieId) {
+        movieRepository.deleteById(movieId);
+        return "redirect:/view-movies";
+    }
+
+
 
     private boolean sessionController(HttpSession session){
         if(session.getAttribute("status") != null && session.getAttribute("status").equals("1")){
@@ -256,6 +315,5 @@ public class MainController {
             return false;
         }
     }
-
 
 }

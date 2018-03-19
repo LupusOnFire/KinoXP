@@ -19,18 +19,20 @@
     <p>En design demo til Kino XP</p>
     -->
 
-        <div th:each="movie: ${movieList}">
+        <div th:each="movie : ${movieList}">
             <div id="movieContainer">
                 <div id="movieHeader" th:text="${movie.title}"></div>
                 <div id="movieContent">
                     <div id="contentLeft">
-                        <img src="https://i.imgur.com/6w4YA72.jpg" height="100%" width="100%" />
+                        <!-- th:href="@{/update-showing(showingId=${showing.id})} -->
+                        <img th:src="@{/files/images/posters/} + ${movie.imdbId + '.jpg'}" height="100%" width="100%" />-
+                        <!--<img th:src="@{/images/black-panther.jpg}" height="100%" width="100%" />-->
                     </div>
                     <div id="contentRight" >
                         <p th:text="${movie.description}"></p>
                         <br/>
-                        <div th:each="i: ${#numbers.sequence(0,2)}">
-                            <p th:text="${movieList.get(6).getActors().get(i).getName()}"></p>
+                            <div th:each="i: ${movie.getActors()}">
+                            <p th:text="${i.name}"></p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +41,7 @@
         </div>
 
     <br/>
-    <div id="movieContainer">
+    <!--<div id="movieContainer">
         <div id="movieHeader">Black Panther</div>
         <div id="movieContent">
             <div id="contentLeft">
@@ -53,7 +55,7 @@
             </div>
         </div>
         <div id="movieFooter">134m, PG-13</div>
-    </div>
+    </div>-->
 </div>
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>

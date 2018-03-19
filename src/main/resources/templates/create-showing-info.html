@@ -24,7 +24,7 @@
 
 <div>
     vælg dato
-     <input type="datetime-local" th:field="${showing.time}" />
+     <input type="datetime-local" th:field="${showing.time}"  />
      <!-- <input type="time"/> -->
 
 </div>
@@ -44,6 +44,6 @@
 </form>
 
 
-
+<th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
 </html>

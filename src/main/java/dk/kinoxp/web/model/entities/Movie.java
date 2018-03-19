@@ -26,6 +26,9 @@ public class Movie {
     @Column(name="runtime")
     private String runtime;
 
+    @Column(name="imdb_id")
+    private String imdbId;
+
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name = "movie_actor",
             joinColumns = @JoinColumn(name = "movie_id"),
@@ -52,7 +55,15 @@ public class Movie {
         this.actors = actors;
     }
 
-
+    public Movie(String title, String description, String age, String posterPath, String runtime, String imdbId, List<Actor> actors) {
+        this.title = title;
+        this.description = description;
+        this.age = age;
+        this.posterPath = posterPath;
+        this.runtime = runtime;
+        this.imdbId = imdbId;
+        this.actors = actors;
+    }
 
     public int getId() {
         return id;
@@ -104,5 +115,13 @@ public class Movie {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
     }
 }

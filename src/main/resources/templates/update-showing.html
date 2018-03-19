@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: head">
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
+    <title>Opdater dat shit</title>
+
+</head>
+
+<body>
+<div th:include="fragments/menu :: menu"></div>
+<div class="container">
+
+    <form th:action="@{/update-showing(showingId=${showing.id})}" th:method="POST" th:object="${showing}">
+        <div>
+            <table>
+                <tr>
+                    <td>Film</td><td><input disabled th:field="${showing.movieTitle}" th:placeholder="${showing.movieTitle}" /></td>
+                </tr>
+                <tr>
+                    <td>Tidspunkt</td><td><input th:field="${showing.time}" th:value="${showing.time}" th:placeholder="${showing.time}" /></td>
+                </tr>
+                <tr>
+                    <td>Sal</td><td><input th:field="${showing.cinemaId}" th:value="${showing.cinemaId}" th:placeholder="${showing.cinemaId}" /></td>
+                </tr>
+            </table>
+
+        </div>
+        <input type="submit" value="Gem" />
+    </form>
+
+
+</div>
+
+
+<th:block th:include="fragments/footer :: scripts"></th:block>
+</body>
+</html>
