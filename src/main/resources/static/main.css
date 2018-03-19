@@ -15,16 +15,29 @@ body {
 .navbar-inverse {
     background-color:#273449;
 }
+.navbar {
+    border:0px;
+}
 
-#color1 {
+.movie-block {
+    padding-top:20px;
+}
+.movie-description {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-left:315px;
+    height:375px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.round {
+    border-radius: 10px;
+    border: 5px #eaca4b;
+    border-style:solid;
+}
+
+.color1 {
     background-color: #273449;
-    width: 33%;
-    height: 200px;
-    float:left;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    text-align: center;
 }
 
 #color2 {
@@ -47,6 +60,9 @@ body {
     margin: 0;
     border: 0;
     text-align: center;
+}
+.color4 {
+    background-color: #8F729E;
 }
 
 

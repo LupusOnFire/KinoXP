@@ -18,43 +18,29 @@
     </div>
     <p>En design demo til Kino XP</p>
     -->
-        <div th:each="movie : ${movieList}" th:class="row">
-            <div>
-                <img th:src="@{/files/images/posters/} + ${movie.imdbId + '.jpg'}" />
-            </div>
-            <div>
-                <h2 th:class="text-center" th:text="${movie.title}"></h2>
-                <table>
-                    <tbody>
-                        <tr th:class="text-left">
-                            <td>Beskrivelse: </td>
-                            <td th:text="${movie.description}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <!--<div th:each="movie : ${movieList}">
-            <div id="movie-container">
-                <div id="movie-Header" th:text="${movie.title}"></div>
-                <div id="movieContent">
-                    <div id="contentLeft">
-                        <!-- th:href="@{/update-showing(showingId=${showing.id})} -->
-                        <!--<img th:src="@{/files/images/posters/} + ${movie.imdbId + '.jpg'}" />-->
-                        <!--<img th:src="@{/images/black-panther.jpg}" height="100%" width="100%" />-->
-                    <!--</div>
-                    <div id="contentRight" >
-                        <p th:text="${movie.description}"></p>
-                        <br/>
-                            <div th:each="i: ${movie.getActors()}">
-                            <p th:text="${i.name}"></p>
-                        </div>
+        <div th:each="movie : ${movieList}" class="row movie-block">
+            <div class="col-md-10 col-md-offset-1 color4 round">
+                <div class="pull-left">
+                    <img th:src="@{/files/images/posters/} + ${movie.imdbId + '.jpg'}" width="300" height="450" />
+                </div>
+                <div>
+                    <h2 th:class="text-center" th:text="${movie.title}"></h2>
+                    <div class="movie-description">
+                        <p>Spilletid: <b th:text="${movie.runtime}"></b></p>
+                        <p>Beskrivelse:</p>
+                        <blockquote th:text="${movie.description}"></blockquote>
+                        <p>Skuespillere:</p>
+                        <ul th:each="i: ${movie.getActors()}">
+                            <li th:text="${i.name}"></li>
+                        </ul>
+
+                        <br />
+                        <p>Aldersgrænse: <b th:text="${movie.age}"></b></p>
                     </div>
                 </div>
-                <div id="movieFooter"> <p th:text="${movie.runtime}" style="float: left"></p> <p th:text="${movie.age}"></p></div>
             </div>
-        </div> -->
+        </div>
 
     <br/>
 </div>
