@@ -91,18 +91,18 @@ h2 {
     font-size: 32px;
 } */
 
-#loginContainer {
-    color: #000;
-    width: 1000px;
-    height: 600px;
-    padding: 0;
-    margin: 0;
-    border: 0px solid #000;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    text-align: center;
-}
+/*#loginContainer {*/
+    /*color: #000;*/
+    /*width: 1000px;*/
+    /*height: 600px;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+    /*border: 0px solid #000;*/
+    /*border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*-webkit-border-radius: 5px;*/
+    /*text-align: center;*/
+/*}*/
 .seat {
     width:25px;
     height: 25px;
@@ -193,4 +193,9 @@ h2 {
 
 .table-bordered td, .table-bordered th {
     border: none;
+}
+
+.vcenter {
+    position: absolute;
+    top: 30%;
 }
