@@ -170,3 +170,7 @@ h2 {
 .custom-edit{
     text-align: center;
 }
+
+.custom-movie {
+    width: inherit;
+}

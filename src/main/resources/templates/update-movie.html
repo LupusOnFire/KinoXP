@@ -11,7 +11,34 @@
 <div class="container">
 
     <form th:action="@{/update-movie(movieId=${movie.id})}" th:method="POST" th:object="${movie}">
-        <div>
+        <fieldset>
+            <div class="form-group input-group">
+                <span class="input-group-addon input-group-addon-uniform custom-movie"><i class="glyphicon glyphicon-film"></i> Titel</span>
+                <input class="form-control" placeholder="Titel" type="text" th:field="${movie.title}"/>
+
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon input-group-addon-uniform custom-movie"><i class="glyphicon glyphicon-list-alt"></i> Beskrivelse</span>
+                <input class="form-control" placeholder="Beskrivelse" type="text" th:field="${movie.description}"/>
+
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon input-group-addon-uniform custom-movie"><i class="glyphicon glyphicon-eye-open"></i> Aldergrænse</span>
+                <input class="form-control" placeholder="Aldersgrænse" type="text" th:field="${movie.age}"/>
+
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon input-group-addon-uniform custom-movie"><i class="glyphicon glyphicon-link"></i> URL</span>
+                <input class="form-control" placeholder="URL" type="text" th:field="${movie.posterPath}"/>
+
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon input-group-addon-uniform custom-movie"><i class="glyphicon glyphicon-hourglass"></i> Spilletid</span>
+                <input class="form-control" placeholder="Spilletid" type="text" th:field="${movie.runtime}"/>
+
+            </div>
+        </fieldset>
+        <!--<div>
             <table>
                 <tr>
                     <td>Titel</td><td><input th:field="${movie.title}" th:placeholder="${movie.title}" /></td>
@@ -30,7 +57,7 @@
                 </tr>
             </table>
 
-        </div>
+        </div> -->
         <input type="submit" value="Gem" />
     </form>
 
