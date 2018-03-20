@@ -17,14 +17,16 @@
             <th>ID</th>
             <th>Film</th>
             <th>Tidspunkt</th>
+            <th>Ledige sæder</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="showing : ${showingList}">
+        <tr th:each="showing,iterStat : ${showingList}">
             <td th:text="${showing.id}"></td>
             <td ><strong class="h3" th:text="${showing.movie.title}"></strong></td>
             <td th:text="${showing.time}"></td>
+            <td th:text="${seatCount[iterStat.index]}"></td>
             <td class="custom-edit"><input type="radio" th:name="showingId" th:value="${showing.id}"></td>
         </tr>
         </tbody>

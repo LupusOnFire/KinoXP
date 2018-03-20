@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -242,7 +243,16 @@ public class MainController {
     @RequestMapping (value = {"create-booking-select-showing"}, method = RequestMethod.GET)
     public String selectShowingForBooking(Model model)
     {
+        ShowingService showingService = new ShowingService();
         List<Showing> showings = showingRepository.findAll();
+        List<Integer> availableSeatCountList = new LinkedList<>();
+        for (Showing showing : showings) {
+            List<Booking> bookings = bookingRepository.findAllByShowing(showing);
+            List<Seat> seats = showingService.setSeatState(showing.getCinema().getSeats(), bookings);
+            availableSeatCountList.add(seats.size() - showingService.bookedSeatsCount(seats, bookings));
+        }
+        model.addAttribute("seatCount", availableSeatCountList);
+
         model.addAttribute(showings);
         return "/create-booking-select-showing";
     }
