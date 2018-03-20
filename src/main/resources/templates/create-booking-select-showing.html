@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: head">
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
+    <title>Opdater dat shit</title>
+
+</head>
+
+<body>
+<div th:include="fragments/menu :: menu"></div>
+<div class="container fill">
+    <h2 class="text-center" style="color:white">Vælg en forestilling</h2>
+    <form th:action="@{/create-booking(showingId=${showingId})}" th:method="GET" th:object="${movie}">
+    <table class="table table-hover cstm-tbl-bg ">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Film</th>
+            <th>Tidspunkt</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="showing : ${showingList}">
+            <td th:text="${showing.id}"></td>
+            <td ><strong class="h3" th:text="${showing.movie.title}"></strong></td>
+            <td th:text="${showing.time}"></td>
+            <td class="custom-edit"><input type="radio" th:name="showingId" th:value="${showing.id}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="text-align: center">
+        <input class="btn btn-primary" type="submit" value="Vælg" />
+    </div>
+    </form>
+    <br/>
+</div>
+<th:block th:include="fragments/footer :: scripts"></th:block>
+</body>
+</html>

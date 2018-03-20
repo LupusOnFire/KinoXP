@@ -239,20 +239,28 @@ public class MainController {
         return "create";
     }
 
-    @RequestMapping(value = "/create-booking", method = RequestMethod.POST)
-    public String createBooking(Booking booking){
-        BookingCreator bookingCreator = new BookingCreator();
-        bookingRepository.save(bookingCreator.createBooking(booking.getSeats(), booking.getCinema(), booking.getShowing(), booking.getTelephone(), booking.isPaid()));
-
-        // Form missing in HTML
-
-        return "create-booking";
+    @RequestMapping (value = {"create-booking-select-showing"}, method = RequestMethod.GET)
+    public String selectShowingForBooking(Model model)
+    {
+        List<Showing> showings = showingRepository.findAll();
+        model.addAttribute(showings);
+        return "/create-booking-select-showing";
     }
 
     @RequestMapping(value = "/create-booking", method = RequestMethod.GET)
     public String createBooking(){
 
         // Might need an empty Booking object...
+
+        return "create-booking";
+    }
+
+    @RequestMapping(value = "/create-booking", method = RequestMethod.POST)
+    public String createBooking(Booking booking){
+        BookingCreator bookingCreator = new BookingCreator();
+        bookingRepository.save(bookingCreator.createBooking(booking.getSeats(), booking.getCinema(), booking.getShowing(), booking.getTelephone(), booking.isPaid()));
+
+        // Form missing in HTML
 
         return "create-booking";
     }
@@ -336,6 +344,7 @@ public class MainController {
         movieRepository.deleteById(movieId);
         return "redirect:/view-movies";
     }
+
 
 
 
