@@ -25,6 +25,16 @@ public class ImageController {
         ImageIO.write(image, "jpg", bos);
         return bos.toByteArray();
     }
+
+    @RequestMapping(value = "/files/images/products/{id}.jpg")
+    @ResponseBody
+    public byte[] getImage(@PathVariable String id) throws IOException {
+        String path = Constants.PRODUCT_FOLDER + id + ".jpg";
+        BufferedImage image = ImageIO.read(new File(path));
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", bos);
+        return bos.toByteArray();
+    }
 }
 
 

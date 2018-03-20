@@ -1,18 +1,18 @@
-package dk.kinoxp.web.config;
+package dk.kinoxp.web.model.services.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class DateTimeHolder {
+public class DateTimeDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    public DateTimeHolder(Date date){
+    public DateTimeDto(Date date){
         this.date = date;
     }
 
-    public DateTimeHolder(){
+    public DateTimeDto(){
     }
 
     public Date getDate() {

@@ -9,9 +9,10 @@
 <div th:include="fragments/menu :: menu"></div>
 <div class="container fill">
     <h2 style="color: #fff;">Create product</h2>
-    <form method="POST" action="/create-product">
-        <input type="text" name="name" value="name"/>
-        <input type="price" name="price" value="price" />
+    <form method="POST" action="/create-product" th:object="${product}">
+        <input type="text" th:field="${product.name}" name="name" value="name"/>
+        <input type="text" th:field="${product.price}" name="price" value="price" />
+        <input type="text" th:field="${product.imagePath}" name="imagePath" value="imagePath" />
         <input type="submit"  value="create"/>
     </form>
 
