@@ -1,6 +1,6 @@
 package dk.kinoxp.web.controller;
 
-import dk.kinoxp.web.config.DateTimeHolder;
+import dk.kinoxp.web.model.services.dto.DateTimeDto;
 import dk.kinoxp.web.model.entities.Booking;
 import dk.kinoxp.web.model.entities.Cinema;
 import dk.kinoxp.web.model.entities.Showing;
@@ -10,16 +10,13 @@ import dk.kinoxp.web.model.entities.*;
 import dk.kinoxp.web.model.repositories.ShowingRepository;
 import dk.kinoxp.web.model.services.*;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -308,7 +305,7 @@ public class MainController {
 
     @RequestMapping (value ={"search-showing"}, method = RequestMethod.GET)
     public String searchShowing(Model model, HttpSession session){
-        model.addAttribute("dateFormat", new DateTimeHolder());
+        model.addAttribute("dateFormat", new DateTimeDto());
 
         if (sessionController(session)){
             return "search-showing";
@@ -318,7 +315,7 @@ public class MainController {
     }
 
     @RequestMapping (value ={"search-showing"}, method = RequestMethod.POST)
-    public String getSearchShowing(@ModelAttribute("dateFormat") DateTimeHolder dateFormat, Model model){
+    public String getSearchShowing(@ModelAttribute("dateFormat") DateTimeDto dateFormat, Model model){
 
 
         Date searchedDate = dateFormat.getDate();
