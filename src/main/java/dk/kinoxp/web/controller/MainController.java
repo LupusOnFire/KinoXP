@@ -1,5 +1,6 @@
 package dk.kinoxp.web.controller;
 
+import dk.kinoxp.web.model.services.dto.BookingDto;
 import dk.kinoxp.web.model.services.dto.DateTimeDto;
 import dk.kinoxp.web.model.entities.Booking;
 import dk.kinoxp.web.model.entities.Cinema;
@@ -258,9 +259,18 @@ public class MainController {
     }
 
     @RequestMapping(value = "/create-booking", method = RequestMethod.GET)
-    public String createBooking(){
+    public String createBooking(Model model, @RequestParam int showingId){
+        ShowingService showingService = new ShowingService();
 
-        // Might need an empty Booking object...
+        Showing showing = showingRepository.findById(showingId);
+        List<Booking> bookings = bookingRepository.findAllByShowing(showing);
+
+        List<Seat> seats = showingService.setSeatState(showing.getCinema().getSeats(), bookings);
+
+        model.addAttribute("seats", seats);
+        model.addAttribute("showing", showing);
+        model.addAttribute("cinema", showing.getCinema());
+        model.addAttribute("bookingDto", new BookingDto());
 
         return "create-booking";
     }

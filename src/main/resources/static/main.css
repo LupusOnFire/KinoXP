@@ -104,11 +104,11 @@ h2 {
     /*text-align: center;*/
 /*}*/
 .seat {
-    width:25px;
+    width:40px;
     height: 25px;
     border-width: 2px;
     border-style: double;
-    border-color: black;
+    border-color: #3d4c64;
 }
 .EMPTY {
     background-color: green;
@@ -198,4 +198,7 @@ h2 {
 .vcenter {
     position: absolute;
     top: 30%;
+}
+.table-center {
+    margin: 0 auto;
 }
