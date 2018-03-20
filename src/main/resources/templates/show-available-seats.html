@@ -5,23 +5,54 @@
     <meta charset="UTF-8" />
     <title>Kino</title>
 </head>
+<script>
+    var seats = [];
+    var seatTaken = false;
+    function setSetStatus(object) {
+        var element = document.getElementById(object);
+        element.classList.toggle("CHECK");
+        document.getElementById(object).innerHTML = "Hello World";
+
+    }
+    function printSeats() {
+        alert(seats);
+    }
+    function checkSeatStatus(object) {
+        seatTaken = false;
+        for (var i = 0; i < seats.length; i++) {
+            if(object.innerHTML == seats[i]) {
+                seats.splice(i, 1);
+                seatTaken = true;
+            }
+        }
+        if(seatTaken == false) {
+            seats.push(object.innerHTML);
+            alert("Seat #" + object.innerHTML + " added to current reserved seats!");
+        }
+    }
+</script>
 <body>
-<div>
-    <table>
-        <thead>
+<div th:include="fragments/menu :: menu"></div>
+<div id ="bodyContainer">
+    <div>
+        <table>
+            <thead>
             <th></th><th th:each="i: ${#numbers.sequence(1, cinema.columns)}" th:text="${i}"></th>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <tr th:each="i: ${#numbers.sequence(1, cinema.rows)}">
-                <td th:text="${i}"></td>
+                <td th:text="${i}" ></td>
                 <td th:each="j: ${#numbers.sequence(1, cinema.columns)}"
                     class="seat"
-                    th:classappend="${seats[((i*cinema.columns+j)-cinema.columns-1)].seatState}">
+                    th:classappend="${seats[((i*cinema.columns+j)-cinema.columns-1)].seatState}" >
+                    <div class = "seatBox" th:text="${seats[((i*cinema.columns+j)-cinema.columns-1)].id}" onclick="checkSeatStatus(this)">
+
+                    </div>
                 </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
-
 </body>
 </html>
