@@ -23,10 +23,12 @@
         <tr>
             <th>Film</th>
             <th>Tidspunkt</th>
+            <th>Sal nr.</th>
         </tr>
         <tr th:each="showing:${searchedResults}">
             <td th:text="${showing.movie?.title}"></td>
             <td th:text="${showing.time}"></td>
+            <td th:text="${showing.cinema?.id}"></td>
         </tr>
 
     </table>
