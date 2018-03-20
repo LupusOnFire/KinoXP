@@ -50,4 +50,12 @@ public class ShowingService {
         }
         return cinemaSeats;
     }
+
+    public int bookedSeatsCount(List<Seat> cinemaSeats, List<Booking> bookings) {
+        int count = 0;
+        for (Booking b : bookings) {
+            count += b.getSeats().size();
+        }
+        return count;
+    }
 }
