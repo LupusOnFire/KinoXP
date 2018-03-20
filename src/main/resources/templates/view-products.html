@@ -7,21 +7,28 @@
 
 <body>
 <div th:include="fragments/menu :: menu"></div>
-
+<div class="container fill">
+<div class="row">
  <div th:each="product : ${products}" class="row movie-block">
-        <div class="col-md-10 col-md-offset-1 color4 round">
-            <div class="pull-left">
-                <img th:src="@{/files/images/products/} + ${product.id + '.jpg'}" width="300" height="450" />
-            </div>
-            <div>
-                <h2 th:class="text-center" th:text="${product.name}"></h2>
-                    <p th:text="${product.price}"></p>
-                    <br />
-                </div>
-            </div>
-        </div>
+     <div class="col-md-8">
+         <div class="col-md-4"><img th:src="@{/files/images/products/} + ${product.id + '.jpg'}" width="100" height="100" />
+             <h2 th:text="${product.name}"></h2>
+             <p style="color:white; font-size:20px"  th:text="${product.price}"></p>
+             <br />
+         </div>
+         <div class="col-md-4">
 
-    <br/>
+         </div>
+         <div class="col-md-4">
+
+         </div>
+     </div>
+
+        </div>
+    <div class="col-md-4"></div>
+
+</div>
+</div>
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
 </html>

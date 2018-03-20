@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -40,5 +43,34 @@ public class ProductController {
         model.addAttribute("products", products);
         //model.addAttribute("products", productRepository.findAll());
         return "view-products";
+    }
+
+    @RequestMapping (value = "/update-product", method = RequestMethod.GET)
+    public String updateProduct(Model model, @RequestParam("id") int id, HttpSession session) {
+        model.addAttribute("product", productRepository.findById(id));
+
+
+        if (sessionController(session)){
+            return "update-product";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping (value = "/update-product", method = RequestMethod.POST)
+    public  String getUpdateProduct(@ModelAttribute("product") Product product)
+    {
+
+        product = productRepository.save(product);
+
+        return "index";
+    }
+
+    private boolean sessionController(HttpSession session){
+        if(session.getAttribute("status") != null && session.getAttribute("status").equals("1")){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
