@@ -1,5 +1,6 @@
 package dk.kinoxp.web.controller;
 
+import dk.kinoxp.web.config.DateTimeHolder;
 import dk.kinoxp.web.model.entities.Booking;
 import dk.kinoxp.web.model.entities.Cinema;
 import dk.kinoxp.web.model.entities.Showing;
@@ -11,12 +12,16 @@ import dk.kinoxp.web.model.services.*;
 import dk.kinoxp.web.model.services.dto.ShowingDto;
 import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -42,6 +47,7 @@ public class MainController {
 
     @Autowired
     ActorRepository actorRepository;
+
 
 
     public MainController() {
@@ -298,6 +304,36 @@ public class MainController {
 
         movieRepository.save(movie);
         return "redirect:/view-movies";
+    }
+
+    @RequestMapping (value ={"search-showing"}, method = RequestMethod.GET)
+    public String searchShowing(Model model, HttpSession session){
+        model.addAttribute("dateFormat", new DateTimeHolder());
+
+        if (sessionController(session)){
+            return "search-showing";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping (value ={"search-showing"}, method = RequestMethod.POST)
+    public String getSearchShowing(@ModelAttribute("dateFormat") DateTimeHolder dateFormat, Model model){
+
+
+        Date searchedDate = dateFormat.getDate();
+        System.out.println(searchedDate);
+        List<Showing> allshowings = showingRepository.findAll();
+        ArrayList<Showing> searchResults = new ArrayList<>();
+        for(Showing showing: allshowings){
+            if(searchedDate.getDate() == showing.getTime().getDate() && searchedDate.getDay() == showing.getTime().getDay()) {
+                searchResults.add(showing);
+            }
+        }
+        model.addAttribute("searchedResults", searchResults);
+
+
+        return "search-showing";
     }
 
     @RequestMapping (value = {"delete-movie"}, method = RequestMethod.GET)
