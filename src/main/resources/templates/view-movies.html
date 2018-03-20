@@ -28,7 +28,7 @@
             <td th:text="${#strings.abbreviate(movie.description, 75)}"></td>
 
             <td th:text="${movie.runtime}"></td>
-            <td><a class="btn btn-primary" th:href="@{/update-movie(movieId=${movie.id})}" th:text="Rediger"></a>
+            <td class="custom-edit"><a class="btn btn-primary" th:href="@{/update-movie(movieId=${movie.id})}" th:text="Rediger"></a>
             <a class="btn btn-danger" th:href="@{/delete-movie(movieId=${movie.id})}" th:text="Slet"></a></td>
         </tr>
         </tbody>
