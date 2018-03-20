@@ -5,8 +5,12 @@ body {
     background-color: #45435E;
     border-radius: 5px;
     margin-top:-15px;
-    color:white;
 }
+h2 {
+    color: white;
+}
+
+
 
 #menu {
     margin-right: -15px;
@@ -157,6 +161,7 @@ body {
 .cstm-tbl-bg {
     background-color: #273449; !important;
     color: #ffffff; !important;
+    margin-top: 15px;
 }
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #3d4c64;

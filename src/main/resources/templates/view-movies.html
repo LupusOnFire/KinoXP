@@ -8,15 +8,14 @@
 
 <body>
 <div th:include="fragments/menu :: menu"></div>
-<div class="container">
+<div class="container fill">
     <table class="table table-bordered table-hover cstm-tbl-bg ">
         <thead>
         <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>Beskrivelse.</th>
             <th>Aldersgrænse</th>
-            <th>Plakat</th>
+            <th>Beskrivelse.</th>
             <th>Længde</th>
             <th></th>
         </tr>
@@ -29,8 +28,8 @@
             <td th:text="${#strings.abbreviate(movie.description, 75)}"></td>
 
             <td th:text="${movie.runtime}"></td>
-            <td><a th:href="@{/update-movie(movieId=${movie.id})}" th:text="Rediger"></a></td>
-            <td><a th:href="@{/delete-movie(movieId=${movie.id})}" th:text="Slet"></a></td>
+            <td><a class="btn btn-primary" th:href="@{/update-movie(movieId=${movie.id})}" th:text="Rediger"></a>
+            <a class="btn btn-danger" th:href="@{/delete-movie(movieId=${movie.id})}" th:text="Slet"></a></td>
         </tr>
         </tbody>
     </table>
