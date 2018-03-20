@@ -331,8 +331,6 @@ public class MainController {
             }
         }
         model.addAttribute("searchedResults", searchResults);
-
-
         return "search-showing";
     }
 
