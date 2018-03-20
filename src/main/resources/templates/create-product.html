@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head">
+    <link rel="stylesheet" type="text/css" href="../static/main.css" />
+    <meta charset="UTF-8" />
+    <title>Create product</title>
+</head>
+<body>
+<div th:include="fragments/menu :: menu"></div>
+<div class="container fill">
+    <h2 style="color: #fff;">Create product</h2>
+    <form method="POST" action="/create-product">
+        <input type="text" name="name" value="name"/>
+        <input type="price" name="price" value="price" />
+        <input type="submit"  value="create"/>
+    </form>
+
+</div>
+<th:block th:include="fragments/footer :: scripts"></th:block>
+</body>
+</html>
