@@ -172,5 +172,21 @@ h2 {
 }
 
 .custom-movie {
-    width: inherit;
+    min-width:150px;
+    text-align: left;
+
+}
+
+.custom-movie-field {
+    background-color: #3d4c64;
+    color: white;
+}
+
+.custom-white {
+    color: white;
+    background-color: #3d4c64;
+}
+
+.input-group-addon:first-child {
+    border: 0px;
 }
