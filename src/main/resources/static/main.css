@@ -190,3 +190,7 @@ h2 {
 .input-group-addon:first-child {
     border: 0px;
 }
+
+.table-bordered td, .table-bordered th {
+    border: none;
+}

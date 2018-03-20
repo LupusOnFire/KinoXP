@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:include="fragments/menu :: menu"></div>
-<div id ="bodyContainer">
+<div class="container fill">
     <div id="loginContainer" th:if="${session.status == null}">
         <h2 style="color: #fff;">Login to access site</h2>
         <form method="POST" action="/login">
