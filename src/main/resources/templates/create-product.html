@@ -8,15 +8,29 @@
 <body>
 <div th:include="fragments/menu :: menu"></div>
 <div class="container fill">
-    <h2 style="color: #fff;">Create product</h2>
-    <form method="POST" action="/create-product" th:object="${product}">
-        <input type="text" th:field="${product.name}" name="name" value="name"/>
-        <input type="text" th:field="${product.price}" name="price" value="price" />
-        <input type="text" th:field="${product.imagePath}" name="imagePath" value="imagePath" />
-        <input type="submit"  value="create"/>
-    </form>
 
+    <form method="POST" action="/create-product" th:object="${product}">
+    <fieldset>
+        <div  class="form-group input-group">
+            <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-film custom-white"></i> Produkt navn</span>
+            <input class="form-control" type="text" th:field="${product.name}"/>
+        </div>
+        <div  class="form-group input-group">
+            <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-film custom-white"></i> Pris</span>
+            <input class="form-control" type="text" th:field="${product.price}"/>
+        </div>
+        <div  class="form-group input-group">
+            <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-film custom-white"></i> Billede(JPG)</span>
+            <input class="form-control" type="text" th:field="${product.imagePath}"/>
+        </div>
+    </fieldset>
+
+        <div style="text-align: center">
+            <input class="btn btn-primary" type="submit" value="Opret produkt" />
+        </div>
+    </form>
 </div>
+
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
 </html>

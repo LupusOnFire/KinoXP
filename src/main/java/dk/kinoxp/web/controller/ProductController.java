@@ -21,28 +21,37 @@ public class ProductController {
     ProductRepository productRepository;
 
     @RequestMapping( value = "/create-product", method = RequestMethod.GET)
-    public String createProduct(Model model) {
+    public String createProduct(Model model, HttpSession session) {
         model.addAttribute("product", new Product());
-        return "create-product";
+
+        if (sessionController(session)){
+            return "create-product";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping( value = "/create-product", method = RequestMethod.POST)
     public String createProduct(@ModelAttribute("product") Product product) {
         productRepository.save(product);
         System.out.println(product.getName());
-        return "redirect:/index";
+        return "redirect:/view-products";
     }
 
     @RequestMapping( value ="/view-products", method = RequestMethod.GET)
-    public String viewProduct(Model model) {
+    public String viewProduct(Model model, HttpSession session) {
         List<Product> products = productRepository.findAll();
         ProductService productService = new ProductService();
         for (Product product : products) {
             productService.initializeImage(product);
         }
         model.addAttribute("products", products);
-        //model.addAttribute("products", productRepository.findAll());
-        return "view-products";
+
+        if (sessionController(session)){
+            return "view-products";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping (value = "/update-product", method = RequestMethod.GET)
@@ -60,7 +69,6 @@ public class ProductController {
     @RequestMapping (value = "/update-product", method = RequestMethod.POST)
     public  String getUpdateProduct(@ModelAttribute("product") Product product)
     {
-
         product = productRepository.save(product);
 
         return "index";
