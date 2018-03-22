@@ -9,7 +9,6 @@
 <body>
 <div th:include="fragments/menu :: menu"></div>
 <div class="container fill">
-
     <div>
         <h2 class="text-center" style="color:white">Vælg sæder</h2>
         <table class="table-center">
@@ -21,10 +20,7 @@
                 <td th:text="${i}" ></td>
                 <td th:each="j: ${#numbers.sequence(1, cinema.columns)}"
                     class="seat"
-                    th:classappend="${seats[((i*cinema.columns+j)-cinema.columns-1)].seatState}" >
-                    <div class="seatBox" th:id="${seats[((i*cinema.columns+j)-cinema.columns-1)].id}" th:text="${seats[((i*cinema.columns+j)-cinema.columns-1)].id}" onclick="checkSeatStatus(this)">
-
-                    </div>
+                    th:classappend="${seats[((i*cinema.columns+j)-cinema.columns-1)].seatState}" th:id="${seats[((i*cinema.columns+j)-cinema.columns-1)].id}" onclick="selectSeat(this)">
                 </td>
             </tr>
             </tbody>
@@ -32,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <form style="margin-top: 15px; margin-bottom: 15px" th:action="@{/create-booking}" th:method="POST" th:object="${bookingDto}">
+            <form style="margin-top: 15px; margin-bottom: 15px" th:action="@{/create-booking(showingId=${showing.id })}" th:method="POST" th:object="${bookingDto}">
                 <fieldset>
                     <div  class="form-group input-group">
                         <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-phone custom-white"></i> Telefon</span>
@@ -40,51 +36,39 @@
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-usd custom-white"></i> Betalt</span>
-                        <span style="margin-left:20px;"></span> <input type="checkbox" class="form-check-input" id="check" />
+                        <span style="margin-left:20px;"></span> <input type="checkbox" th:field="${bookingDto.paid}" class="form-check-input" id="check" />
                     </div>
-                    <input type="text" style="display: none" th:field="${bookingDto.bookedSeats}">
-
+                    <input type="text" id="seatList" style="display: none" th:field="${bookingDto.bookedSeats}">
                 </fieldset>
                 <div style="text-align: center">
                     <input class="btn btn-primary" type="submit" value="Opret" />
                 </div>
             </form>
-
         </div>
     </div>
-
-
-
-
 </div>
 
 <script>
     var seats = [];
     var seatTaken = false;
-    function setSetStatus(object) {
-        if (object.style.backgroundColor != '#C8FB59') {
-            object.style.backgroundColor = '#C8FB59';
-        } else {
-            object.style.backgroundColor = '#3d4c64';
-        }
-
+    function writeSeatsToInput() {
+        document.getElementById("seatList").value = seats;
     }
-    function printSeats() {
-        alert(seats);
-    }
-    function checkSeatStatus(object) {
-        setSetStatus(object)
+    function selectSeat(object) {
         seatTaken = false;
         for (var i = 0; i < seats.length; i++) {
-            if(object.innerHTML == seats[i]) {
+            if(object.getAttribute('id') == seats[i]) {
                 seats.splice(i, 1);
                 seatTaken = true;
+                object.style.backgroundColor = 'green';
             }
         }
         if(seatTaken == false) {
-            seats.push(object.innerHTML);
-             //alert("Seat #" + object.innerHTML + " added to current reserved seats!");
+            seats.push(object.getAttribute('id'));
+            //alert("Seat #" + object.getAttribute('id') + " added to current reserved seats!");
+            object.style.backgroundColor = '#C8FB59';
         }
+        writeSeatsToInput();
     }
 </script>
 <th:block th:include="fragments/footer :: scripts"></th:block>

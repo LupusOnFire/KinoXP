@@ -27,7 +27,7 @@
             <td ><strong class="h3" th:text="${showing.movie.title}"></strong></td>
             <td th:text="${showing.time}"></td>
             <td th:text="${seatCount[iterStat.index]}"></td>
-            <td class="custom-edit"><input type="radio" th:name="showingId" th:value="${showing.id}"></td>
+            <td class="custom-edit"><input type="radio" th:name="showingId" th:value="${showing.id}" checked></td>
         </tr>
         </tbody>
     </table>

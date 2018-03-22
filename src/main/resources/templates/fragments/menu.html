@@ -19,7 +19,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown" th:if="${session.status != null}"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Booking<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Create</a></li>
+                            <li><a href="/create-booking-select-showing">Opret booking</a></li>
                             <li><a href="/view-booking">Vis/Opdater bookings</a></li>
                         </ul>
                     </li>
@@ -40,6 +40,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/view-products">Vis produkter</a></li>
                             <li><a href="/create-product">Opret produkt</a></li>
+                            <li><a href="/update-product">Opdater produkt</a></li>
                         </ul>
                     </li>
                     <li th:if="${session.status == null}"><a href="/login">Login</a></li>

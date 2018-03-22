@@ -271,18 +271,25 @@ public class MainController {
         model.addAttribute("showing", showing);
         model.addAttribute("cinema", showing.getCinema());
         model.addAttribute("bookingDto", new BookingDto());
-
         return "create-booking";
     }
 
     @RequestMapping(value = "/create-booking", method = RequestMethod.POST)
-    public String createBooking(Booking booking){
-        BookingCreator bookingCreator = new BookingCreator();
-        bookingRepository.save(bookingCreator.createBooking(booking.getSeats(), booking.getCinema(), booking.getShowing(), booking.getTelephone(), booking.isPaid()));
-
-        // Form missing in HTML
-
-        return "create-booking";
+    public String createBooking(@ModelAttribute("bookingDto") BookingDto bookingDto, @RequestParam int showingId) {
+        System.out.println(bookingDto.getBookedSeats());
+        Booking booking = new Booking();
+        String[] seatArray = bookingDto.getBookedSeats().split(",");
+        List<Integer> seatIntList = new LinkedList<>();
+        for (int i = 0; i < seatArray.length; i++) {
+            seatIntList.add(Integer.parseInt(seatArray[i]));
+        }
+        List<Seat> bookedSeats = seatRepository.findAllById(seatIntList);
+        booking.setSeats(bookedSeats);
+        booking.setTelephone(bookingDto.getTelephone());
+        booking.setPaid(bookingDto.isPaid());
+        booking.setShowing(showingRepository.findById(showingId));
+        bookingRepository.save(booking);
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/create-actor", method = RequestMethod.GET)
