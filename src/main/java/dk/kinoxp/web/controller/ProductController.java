@@ -75,7 +75,7 @@ public class ProductController {
     {
         product = productRepository.save(product);
 
-        return "index";
+        return "redirect:/view-products";
     }
 
     private boolean sessionController(HttpSession session){

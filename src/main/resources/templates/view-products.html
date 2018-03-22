@@ -12,11 +12,10 @@
 <div class="container fill">
     <ul class="products">
         <li th:each="product : ${products}">
-            <a href="#">
-                <img th:src="@{/files/images/products/} + ${product.id + '.jpg'}" width="150" height="150">
+                <img th:src="@{/files/images/products/} + ${product.id + '.jpg'}" width="150" height="150"/>
                 <h4 style="color: white" th:text="${product.name}"></h4>
-                <p style="color: white" th:text="${product.price}"></p>
-            </a>
+            <p style="color: white" th:text="${product.price}"></p>
+            <a th:href="@{/update-product(id=${product.id})}">REDIGER</a>
         </li>
     </ul>
 </div>

@@ -7,8 +7,6 @@ import java.text.DecimalFormat;
 @Table(name = "product")
 public class Product {
 
-    DecimalFormat decimalFormat = new DecimalFormat("###.#");
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
