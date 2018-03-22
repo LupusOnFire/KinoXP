@@ -6,15 +6,28 @@
     <title>Create movie</title>
 </head>
 <body>
-<div th:include="fragments/menu :: menu"></div>
-<div class="container fill">
-        <h2 >Create movie</h2>
-        <form method="POST" action="/create-movie">
-            <input type="text" name="title" value="title"/>
-            <input type="submit"  value="create"/>
-        </form>
 
+<div th:include="fragments/menu :: menu"></div>
+
+<div class="container fill">
+    <form method="POST" action="/create-movie">
+        <fieldset>
+            <h2 style="text-align: center"> Opret film</h2>
+            <div  class="form-group input-group">
+                <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-film custom-white"></i> Film titel</span>
+                <input class="form-control" type="text" th:field="${movie.title}"/>
+            </div>
+        </fieldset>
+
+        <div style="text-align: center">
+            <input class="btn btn-primary" type="submit" value="Opret film" />
+        </div>
+    </form>
 </div>
+
+
+
+
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
 </html>

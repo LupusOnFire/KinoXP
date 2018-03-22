@@ -50,13 +50,15 @@ public class ProductController {
         }
         model.addAttribute("products", products);
 
+        /*
         if (sessionController(session)){
             return "view-products";
         } else {
             return "login";
         }
+        */
 
-        //return "view-products";
+        return "view-products";
     }
 
     @RequestMapping (value = "/update-product", method = RequestMethod.GET)

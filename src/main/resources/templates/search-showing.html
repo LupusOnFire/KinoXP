@@ -9,33 +9,34 @@
     <title>søg visninger</title>
 
 </head>
-<div th:include="fragments/menu :: menu"></div>
 
 <body>
-<form th:action="@{search-showing}" th:method="post" th:object="${dateFormat}">
-<div>
 
-<div class="form-group form-inline">
-    <input type="date" th:field="${dateFormat.date}" th:value="${dateFormat.date}">
-    <input type="submit" value="Søg!"/>
-</div>
+<div th:include="fragments/menu :: menu"></div>
+
+    <div class="container fill">
+        <form th:action="@{search-showing}" th:method="post" th:object="${dateFormat}">
+
+        <div class="form-group input-group">
+            <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicons glyphicons-fast-food"></i> Film titel</span>
+            <input type="date" th:field="${dateFormat.date}" th:value="${dateFormat.date}">
+            <input class="btn btn-primary" type="submit" value="Søg" />
+        </div>
+
     <table class = "table">
         <tr>
-            <th>Film</th>
-            <th>Tidspunkt</th>
-            <th>Sal Nr.</th>
+            <th style="color: white">Film</th>
+            <th style="color: white">Tidspunkt</th>
+            <th style="color: white">Sal Nr.</th>
         </tr>
         <tr th:each="showing:${searchedResults}">
-            <td th:text="${showing.movie?.title}"></td>
-            <td th:text="${showing.time}"></td>
-            <td th:text="${showing.cinema?.id}"></td>
+            <td style="color: white" th:text="${showing.movie?.title}"></td>
+            <td style="color: white" th:text="${showing.time}"></td>
+            <td style="color: white" th:text="${showing.cinema?.id}"></td>
         </tr>
-
     </table>
-
-</div>
-
 </form>
+</div>
 
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>

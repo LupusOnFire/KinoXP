@@ -15,9 +15,8 @@
                 <img th:src="@{/files/images/products/} + ${product.id + '.jpg'}" width="150" height="150"/>
                 <h4 style="color: white" th:text="${product.name}"></h4>
             <p style="color: white" th:text="${product.price}"></p>
-            <a th:href="@{/update-product(id=${product.id})}">REDIGER</a>
-            <a th:href="@{/delete-product(id=${product.id})}">SLET</a>
-
+            <a class="btn btn-primary" th:href="@{/update-product(id=${product.id})}">REDIGER</a>
+            <a class="btn btn-danger" th:href="@{/delete-product(id=${product.id})}">SLET</a>
         </li>
     </ul>
 </div>
