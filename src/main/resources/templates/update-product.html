@@ -12,14 +12,24 @@
 
     <form th:action="@{/update-product}" th:method="POST" th:object="${product}">
 
-            <input type="hidden" th:field="*{id}"/>
-            <p>navn:</p>
-            <input type="text" th:field="*{name}"/>
-            <p>pris:</p>
-            <input type="text" th:field="*{price}"/>
+        <fieldset>
+            <div>
+                <div class="form-group input-group">
+                    <input class="form-control" type="hidden" th:field="*{id}"/>
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-calendar custom-white"></i> Navn</span>
+                    <input class="form-control" type="text" th:field="*{name}"/>
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-blackboard custom-white"></i> Pris</span>
+                    <input class="form-control" type="text" th:field="*{price}"/>
+                </div>
 
 
-        <input type="submit" value="Gem"/>
+                <input type="submit" value="Gem"/>
+            </div>
+        </fieldset>
     </form>
 
 
@@ -28,4 +38,12 @@
 
 <th:block th:include="fragments/footer :: scripts"></th:block>
 </body>
+
+<!--<input type="hidden" th:field="*{id}"/>
+<p>navn:</p>
+<input type="text" th:field="*{name}"/>
+<p>pris:</p>
+<input type="text" th:field="*{price}"/>
+-->
+
 </html>

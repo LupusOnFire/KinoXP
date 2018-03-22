@@ -11,10 +11,10 @@
 
 <div class="container fill">
     <ul class="products">
-        <li th:each="product : ${products}">
+        <li style="padding: 15px"   class="table table-hover cstm-tbl-bg" th:each="product : ${products}">
                 <img th:src="@{/files/images/products/} + ${product.id + '.jpg'}" width="150" height="150"/>
                 <h4 style="color: white" th:text="${product.name}"></h4>
-            <p style="color: white" th:text="${product.price}"></p>
+            <p style="color: white" th:text="${product.price} + ' kr.'"></p>
             <a class="btn btn-primary" th:href="@{/update-product(id=${product.id})}">REDIGER</a>
             <a class="btn btn-danger" th:href="@{/delete-product(id=${product.id})}">SLET</a>
         </li>
