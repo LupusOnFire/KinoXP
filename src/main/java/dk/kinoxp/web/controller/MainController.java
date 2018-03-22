@@ -117,7 +117,7 @@ public class MainController {
         showing.setCinema(cinemaRepository.findById(showingDto.getCinemaId()));
         showing.setTime((showingDto.getTime()));
         showingRepository.save(showing);
-        return "/index";
+        return "redirect:/index";
     }
 
     @RequestMapping (value = {"view-showings"}, method = RequestMethod.GET)
@@ -363,6 +363,13 @@ public class MainController {
     public String deleteMovie(@RequestParam int movieId) {
         movieRepository.deleteById(movieId);
         return "redirect:/view-movies";
+    }
+
+
+    @RequestMapping (value = {"delete-showing"}, method = RequestMethod.GET)
+    public String deleteShowing(@RequestParam int showingId) {
+        showingRepository.deleteById(showingId);
+        return "redirect:/view-showings";
     }
 
 
