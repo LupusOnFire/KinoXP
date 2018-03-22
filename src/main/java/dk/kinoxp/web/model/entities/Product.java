@@ -1,10 +1,13 @@
 package dk.kinoxp.web.model.entities;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 
 @Entity
 @Table(name = "product")
 public class Product {
+
+    DecimalFormat decimalFormat = new DecimalFormat("###.#");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

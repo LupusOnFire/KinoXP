@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Controller
 public class ProductController {
     @Autowired
     ProductRepository productRepository;
+
+    DecimalFormat decimalFormat = new DecimalFormat("###.#");
 
     @RequestMapping( value = "/create-product", method = RequestMethod.GET)
     public String createProduct(Model model, HttpSession session) {
@@ -52,12 +55,13 @@ public class ProductController {
         } else {
             return "login";
         }
+
+        //return "view-products";
     }
 
     @RequestMapping (value = "/update-product", method = RequestMethod.GET)
     public String updateProduct(Model model, @RequestParam("id") int id, HttpSession session) {
         model.addAttribute("product", productRepository.findById(id));
-
 
         if (sessionController(session)){
             return "update-product";

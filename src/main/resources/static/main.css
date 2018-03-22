@@ -202,3 +202,12 @@ h2 {
 .table-center {
     margin: 0 auto;
 }
+
+/* CSS til kiosken(test)
+ */
+ul.products li {
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
