@@ -7,6 +7,7 @@
 </head>
 <body>
 <div th:include="fragments/menu :: menu"></div>
+<div class="container fill">
 
 <!--
 <sf:select path="${cuisine}">
@@ -14,33 +15,34 @@
 </sf:select>
 -->
 <form th:action="@{create-showing-info}" method="post" th:object="${showing}">
-
-<div>
-    vælg sal
+    <fieldset>
+<div class="form-group input-group">
+    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-blackboard custom-white"></i> Sal</span>
     <select th:field="${showing.cinemaId}">
         <option th:each="cinema : ${cinemaList}" th:value="${cinema.id}" th:text="${cinema.id}"></option>
     </select>
 </div>
 
-<div>
-    vælg dato
+<div class="form-group input-group">
+    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-calendar custom-white"></i> Tid</span>
      <input type="datetime-local" th:field="${showing.time}"/>
      <!-- <input type="time"/> -->
 
 </div>
 
 
-<div>
-    Vælg film
-
+<div class="form-group input-group">
+    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-film custom-white"></i> Film</span>
     <select th:field="${showing.movieId}">
         <option th:each="movie : ${movieList}" th:value="${movie.id}" th:text="${movie.title}"></option>
     </select>
 
 </div>
+    </fieldset>
 
+    <div style="text-align: center">
     <input type="submit" value="send" />
-
+    </div>
 </form>
 
 
