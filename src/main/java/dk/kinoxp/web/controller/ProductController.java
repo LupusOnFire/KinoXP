@@ -78,6 +78,12 @@ public class ProductController {
         return "redirect:/view-products";
     }
 
+    @RequestMapping (value = {"delete-product"}, method = RequestMethod.GET)
+    public String deleteProduct(@RequestParam("id") int productId) {
+        productRepository.deleteById(productId);
+        return "redirect:/view-products";
+    }
+
     private boolean sessionController(HttpSession session){
         if(session.getAttribute("status") != null && session.getAttribute("status").equals("1")){
             return true;

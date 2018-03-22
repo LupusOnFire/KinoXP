@@ -16,12 +16,10 @@
                 <h4 style="color: white" th:text="${product.name}"></h4>
             <p style="color: white" th:text="${product.price}"></p>
             <a th:href="@{/update-product(id=${product.id})}">REDIGER</a>
+            <a th:href="@{/delete-product(id=${product.id})}">SLET</a>
+
         </li>
     </ul>
-</div>
-
-<div  class="form-group input-group">
-    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-film custom-white"></i> Produkt navn</span>
 </div>
 
 <!--
