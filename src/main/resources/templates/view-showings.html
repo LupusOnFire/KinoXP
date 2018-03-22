@@ -8,8 +8,8 @@
 
 <body>
 <div th:include="fragments/menu :: menu"></div>
-<div class="container">
-    <table class="table-bordered">
+<div class="container fill">
+    <table class="table table-hover cstm-tbl-bg">
         <thead>
         <tr>
             <th>ID</th>
@@ -22,15 +22,17 @@
         <!-- <a th:href="@{/order/list}"> -%->
         <!--<a th:href="@{/order/details(id=3)}"-->
         <tr th:each="showing : ${showingList}">
-            <td><a th:href="@{/update-showing(showingId=${showing.id})}" th:text="${showing.id}"></a></td>
-            <td><a th:href="@{/update-showing(showingId=${showing.id})}" th:text="${showing.time}"></a></td>
-            <td><a th:href="@{/update-showing(showingId=${showing.id})}" th:text="${showing.cinema.id}"></a></td>
-            <td><a th:href="@{/update-showing(showingId=${showing.id})}" th:text="${showing.movie.title}"></a></td>
+            <td th:text="${showing.id}"></td>
+            <td th:text="${showing.time}"></td>
+            <td th:text="${showing.cinema.id}"></td>
+            <td th:text="${showing.movie.title}"></td>
+
+            <td class="custom-edit"><a class="btn btn-primary" th:href="@{/update-showing(showingId=${showing.id})}" th:text="Rediger"></a>
+
         </tr>
         </tbody>
     </table>
 </div>
-
 
 <!--<form modelAttribute="showings" th:action="@{update-showing}" method="post" action="/update-showing" th:object="${showingList}">
 
