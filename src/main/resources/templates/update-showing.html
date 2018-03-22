@@ -8,24 +8,33 @@
 
 <body>
 <div th:include="fragments/menu :: menu"></div>
-<div class="container">
+<div class="container fill">
 
     <form th:action="@{/update-showing(showingId=${showing.id})}" th:method="POST" th:object="${showing}">
+        <fieldset>
         <div>
-            <table>
-                <tr>
-                    <td>Film</td><td><input disabled th:field="${showing.movieTitle}" th:placeholder="${showing.movieTitle}" /></td>
-                </tr>
-                <tr>
-                    <td>Tidspunkt</td><td><input th:field="${showing.time}" th:value="${showing.time}" th:placeholder="${showing.time}" /></td>
-                </tr>
-                <tr>
-                    <td>Sal</td><td><input th:field="${showing.cinemaId}" th:value="${showing.cinemaId}" th:placeholder="${showing.cinemaId}" /></td>
-                </tr>
-            </table>
+
+                <div class="form-group input-group">
+                    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-film custom-white"></i> Titel på film</span>
+                    <input class="form-control" disabled th:field="${showing.movieTitle}" th:placeholder="${showing.movieTitle}" />
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-calendar custom-white"></i> Tidspunkt</span>
+                    <input class="form-control" th:field="${showing.time}" th:value="${showing.time}" th:placeholder="${showing.time}" />
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon input-group-addon-uniform custom-movie custom-white"><i class="glyphicon glyphicon-blackboard custom-white"></i> Sal</span>
+                    <input class="form-control" th:field="${showing.cinemaId}" th:value="${showing.cinemaId}" th:placeholder="${showing.cinemaId}" />
+                </div>
+
 
         </div>
-        <input type="submit" value="Gem" />
+
+        </fieldset>
+
+            <div style="text-align: center">
+            <input type="submit" value="Gem" />
+            </div>
     </form>
 
 
