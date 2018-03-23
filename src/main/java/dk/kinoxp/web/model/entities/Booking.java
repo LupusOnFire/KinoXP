@@ -17,10 +17,6 @@ public class Booking {
     private List<Seat> seats;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cinema_id")
-    private Cinema cinema;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "showing_id")
     private Showing showing;
 
@@ -30,9 +26,8 @@ public class Booking {
     @Column(name = "paid")
     private boolean paid;
 
-    public Booking(List<Seat> seats, Cinema cinema, Showing showing, String telephone, boolean paid) {
+    public Booking(List<Seat> seats, Showing showing, String telephone, boolean paid) {
         this.seats = seats;
-        this.cinema = cinema;
         this.showing = showing;
         this.telephone = telephone;
         this.paid = paid;
@@ -53,10 +48,6 @@ public class Booking {
         return seats;
     }
 
-    public Cinema getCinema() {
-        return cinema;
-    }
-
     public Showing getShowing() {
         return showing;
     }
@@ -71,10 +62,6 @@ public class Booking {
 
     public void setSeats(List<Seat> seats) {
         this.seats = seats;
-    }
-
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
     }
 
     public void setShowing(Showing showing) {

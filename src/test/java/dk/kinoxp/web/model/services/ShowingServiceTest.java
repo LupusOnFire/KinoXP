@@ -29,6 +29,9 @@ public class ShowingServiceTest {
         }
         cinema.setSeats(seats);
 
+        Showing showing = new Showing();
+        showing.setCinema(cinema);
+
         Seat seat = new Seat();
         seat.setId(1);
         seat.setColumn(1);
@@ -43,7 +46,7 @@ public class ShowingServiceTest {
         bookedSeats.add(seat);
         bookedSeats.add(seat2);
 
-        Booking booking = new Booking(bookedSeats, cinema, new Showing(), "88888888", true);
+        Booking booking = new Booking(bookedSeats, showing, "88888888", true);
         bookings = new LinkedList<>();
         bookings.add(booking);
     }
